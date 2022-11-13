@@ -27,11 +27,6 @@
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-  <style>
-      #pinggirno{
-        margin-left: 14%;
-      }
-  </style>
 </head>
 
 <body>
@@ -61,7 +56,7 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <form method="POST">
+
         <nav id="navbar" class="navbar">
           <ul>
             <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
@@ -71,12 +66,12 @@
 
             <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
             <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" name="login">Login</a></li>
-            <li><button type="submit" name="regis" class="btn btn-info" id="pinggirno">Register</button></li>
+            <li><a href="{{url("/register")}}">Register</a></li>
             <li></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-      </form>
+
 
     </div>
   </header><!-- End Header -->
