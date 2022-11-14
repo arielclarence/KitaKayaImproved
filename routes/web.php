@@ -28,5 +28,5 @@ Route::get('/', function () {return view('index');} );
 
 
 Route::get('/register', [LoginController::class, "regis"] );
-Route::post('/register', [LoginController::class, "register"]);
+Route::post('/register', [LoginController::class, "Register"]);
 

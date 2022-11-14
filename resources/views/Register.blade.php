@@ -25,39 +25,55 @@
                 <img src="../assets/css/tampilanregis.jpg" class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-5 col-lg-5 col-xl-5 offset-xl-1">
-                <form action="#" method="POST">
+                <form method="POST">
+                    @csrf
                     <!-- Username input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" >Email</label>
                         <input type="email" id="form1Example13" class="form-control form-control-lg" name="email"/>
+                        @error("email")
+                            <small style="color:blue">{{$message}}</small>
+                        @enderror
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" >Password</label>
                         <input type="password" id="form1Example23" class="form-control form-control-lg" name="pass"/>
+                        @error("pass")
+                            <small style="color:blue">{{$message}}</small>
+                        @enderror
                     </div>
 
                     <!-- Confirm Password input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" >Confirm Password</label>
                         <input type="password" id="form1Example23" class="form-control form-control-lg" name="connpass"/>
+                        @error("connpass")
+                            <small style="color:blue">{{$message}}</small>
+                        @enderror
                     </div>
 
                     <!-- Nama input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="form1Example23">Nama</label>
                         <input type="text" class="form-control form-control-lg" name="nama"/>
+                        @error("nama")
+                            <small style="color:blue">{{$message}}</small>
+                        @enderror
                     </div>
 
                     <!-- Umur input -->
                     <div class="form-outline mb-4">
                         <label class="form-label">Umur</label>
                         <input type="text" class="form-control form-control-lg" name="umur"/>
+                        @error("umur")
+                            <small style="color:blue">{{$message}}</small>
+                        @enderror
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" name="ayoregis">Register</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
                     <div>Sudah punya akun? <a href="{{url('/')}}">Login Sekarang</a></div>
                 </form>
             </div>
