@@ -413,7 +413,8 @@
 
     <!-- Modal Login -->
     <!-- Perbaikan action form -->
-    <form action="controllers/auth.php" method="POST">
+    <form method="POST">
+        @csrf
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">

@@ -24,9 +24,10 @@ use App\Http\Controllers\LogoutController;
 // });
 
 
-Route::get('/', function () {return view('index');} );
-
+Route::get('/', function () {return view('index');} )->name("login");
+Route::post('/', [LoginController::class, "login"]);
 
 Route::get('/register', [LoginController::class, "regis"] );
 Route::post('/register', [LoginController::class, "Register"]);
+Route::get('/logout', [LoginController::class, "logout"]);
 
