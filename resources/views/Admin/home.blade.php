@@ -6,7 +6,8 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Saham</li>
         </ol>
-        <form action="../controllers/vid.php" method="POST">
+        <form method="POST">
+            @csrf
             <div>
                 <div class="col-lg-6">
                     <label for="userName" class="form-label">Kategori Video</label>
@@ -25,7 +26,7 @@
             </div>
             <br>
             <div class="col-12">
-                    <button type="submit" class="btn btn-primary" name="btnaddvid" >Add</button>
+                <button type="submit" class="btn btn-primary" name="btnaddvid" >Add</button>
             </div>
         </form>
     </div>
