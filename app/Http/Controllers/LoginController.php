@@ -40,7 +40,7 @@ class LoginController extends Controller
 
         $result = User::create([
             "email" => $in["email"],
-            "password" => $in["pass"],
+            "password" => password_hash($in["pass"], PASSWORD_DEFAULT),
             "nama" => $in["nama"],
             "umur" => $in["umur"],
             "role" => 0,
