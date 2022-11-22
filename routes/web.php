@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserBiasaController;
 use App\Http\Controllers\UserVIPController;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::prefix('/admin')->group(function() {
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"]);
     Route::get('/chartumur', [AdminController::class, "chartumur"]);
 
+    Route::post('/addVideo', [VideoController::class, 'add']);
 });
 
 Route::prefix('/userBiasa')->group(function() {

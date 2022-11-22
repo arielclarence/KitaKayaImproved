@@ -6,22 +6,22 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Saham</li>
         </ol>
-        <form method="POST">
+        <form method="POST" action="/admin/addVideo">
             @csrf
             <div>
                 <div class="col-lg-6">
                     <label for="userName" class="form-label">Kategori Video</label>
-                    <input type="text" class="form-control" placeholder="Beginner" id="nama" name="kategorivideo">
+                    <input type="text" class="form-control" placeholder="Beginner" id="nama" name="kategori">
                 </div>
                 <br>
                 <div class="col-lg-6">
                     <label for="userName" class="form-label">Judul Video</label>
-                    <input type="text" class="form-control" placeholder="Saham888" id="nama" name="judulvideo">
+                    <input type="text" class="form-control" placeholder="Saham888" id="nama" name="judul">
                 </div>
                 <br>
                 <div class="col-lg-6">
                     <label for="userName" class="form-label">Link Video</label>
-                    <input type="text" class="form-control" placeholder="https://www.youtube.com/watch?kitakaya" id="nama" name="linkvideo">
+                    <input type="text" class="form-control" placeholder="https://www.youtube.com/watch?kitakaya" id="nama" name="link">
                 </div>
             </div>
             <br>
