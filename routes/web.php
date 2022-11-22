@@ -33,6 +33,13 @@ Route::get('/register', [LoginController::class, "regis"] );
 Route::post('/register', [LoginController::class, "Register"]);
 Route::get('/logout', [LoginController::class, "logout"]);
 
+Route::get('/kembali', [LoginController::class, "goback"]);
+
+Route::prefix("/email")->group(function() {
+    Route::view("/verify","Email.verify")->name("verification.notice");
+    Route::get("/verify/{id}/{hash}", [LoginController::class, "verifyemail"])->name('verification.verify');
+});
+
 Route::prefix('/admin')->group(function() {
     Route::get('/home', [AdminController::class, "view"]);
     Route::get('/listvideo', [AdminController::class, "listvideo"]);
@@ -59,3 +66,4 @@ Route::prefix('/userVip')->group(function() {
     Route::get('/cs', [UserVIPController::class, "cs"]);
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
