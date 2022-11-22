@@ -436,10 +436,16 @@
                                     <div class="col-lg-6">
                                         <label for="userName" class="form-label">Email</label>
                                         <input type="text" class="form-control" placeholder="ivanderkw2@gmail.com" id="userName" name="username">
+                                        @error("username")
+                                            <small style="color:red">{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="userName" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="userName" name="pass">
+                                        @error("pass")
+                                            <small style="color:red">{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <br>
                                     <div class="col-12">

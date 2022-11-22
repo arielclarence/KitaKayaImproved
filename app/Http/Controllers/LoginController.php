@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -18,10 +20,17 @@ class LoginController extends Controller
             "pass" => ["required"],
         ]);
 
-        $user = User::where('email', $in['username'])->where('password', $in['pass'])->first();
-        Session::put("idUser", $user->idUser);
+        $ceklogin = Auth::attempt(["email" => $in['username'], "password" => $in["pass"]]);
 
-        return view("UserBiasa.home", ["dataUser" => $user, "nama" => $user->nama]);
+        if ($ceklogin == true) {
+            Session::put("idUser", $in['username']);
+            $user = DB::table('user')->where("email","=",$in['username'])->first();
+            Session::put("nama", $user->nama);
+            return view("UserBiasa.home");
+        }
+        else{
+            return redirect()->back()->with("error", "Gagal Login!");
+        }
     }
 
 
