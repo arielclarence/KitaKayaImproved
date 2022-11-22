@@ -420,7 +420,7 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="container-fluid">
-                        <div class="row gy-4">
+                        <div class="row gy-4 p-4 shadow">
                             <div class="col-lg-4 col-sm-12 bg-cover">
                                 <img src="{{asset('assets/img/fotologin.jpg')}}" class="img-fluid" style="min-height:300px" alt="">
                                 <div>
