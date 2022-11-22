@@ -14,6 +14,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class LoginController extends Controller
 {
+    // done
     public function login(Request $request){
         $in = $request->validate([
             "username" => ["required"],
