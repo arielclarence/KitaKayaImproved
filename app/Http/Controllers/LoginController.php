@@ -68,12 +68,6 @@ class LoginController extends Controller
         $result->sendEmailVerificationNotification();
 
         return redirect(url("/email/verify"))->with("email",$in["email"]);
-
-        // if($result){
-        //     return redirect()->back()->with("success", "Berhasil Register!");
-        // }else{
-        //     return redirect()->back()->with("error", "Gagal register!");
-        // }
     }
 
     public function verifyemail(EmailVerificationRequest $r){
