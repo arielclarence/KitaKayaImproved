@@ -75,7 +75,12 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
+                @include('message')
                 @yield('content')
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+                </script>
+                <script type="text/javascript" src="{{asset('assets/js/scripts.js')}}"></script>
+                <script type="text/javascript" src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

@@ -45,10 +45,10 @@ Route::prefix('/admin')->group(function() {
     Route::get('/home', [AdminController::class, "view"]);
     Route::get('/listvideo', [AdminController::class, "listvideo"]);
     Route::get('/chart', [AdminController::class, "chart"]);
+    Route::post('/chart', [AdminController::class, "addChart"]);
     Route::get('/validasi', [AdminController::class, "validasi"]);
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"]);
     Route::get('/chartumur', [AdminController::class, "chartumur"]);
-
     Route::post('/addVideo', [VideoController::class, 'add']);
 });
 

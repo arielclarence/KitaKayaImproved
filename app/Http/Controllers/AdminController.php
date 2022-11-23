@@ -23,8 +23,24 @@ class AdminController extends Controller
     }
 
     public function chart(){
-        return view('Admin.addchart');
+        $getdata = DB::table('rekomendasi')->get();
+
+        return view('Admin.addchart',  ["dataSaham" => $getdata]);
     }
+
+    public function addChart(Request $request){
+        $namasaham = $request->input('nama');
+        $keterangan = $request->input('keterangan');
+
+        if ($namasaham == "" || $keterangan == "") {
+            return redirect()->back()->with('error', 'Semua Harus Diisi!');
+        }
+        else{
+            DB::insert('insert into rekomendasi (nama, keterangan) values (?, ?)', [$namasaham, $keterangan]);
+            return redirect()->back()->with('success', 'Berhasil Add');
+        }
+    }
+
 
     public function validasi(){
         return view('Admin.validasipembayaran');
