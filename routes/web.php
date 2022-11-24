@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserBiasaController;
 use App\Http\Controllers\UserVIPController;
 use App\Http\Controllers\VideoController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,11 +42,17 @@ Route::prefix("/email")->group(function() {
     Route::get("/verify/{id}/{hash}", [LoginController::class, "verifyemail"])->name('verification.verify');
 });
 
+
+
 Route::prefix('/admin')->group(function() {
     Route::get('/home', [AdminController::class, "view"]);
     Route::get('/listvideo', [AdminController::class, "listvideo"]);
-    Route::get('/chart', [AdminController::class, "chart"]);
+    Route::get('/chart', [AdminController::class, "chart"])->name('homeadd');
     Route::post('/chart', [AdminController::class, "addChart"]);
+    Route::post('/chartt', [AdminController::class, "filter"]);
+    Route::get('/chart/{id}', [AdminController::class, "delete"]);
+    Route::get('/chart/{id}/edit', [AdminController::class, "update"]);
+    Route::post('/chart/{id}/edit', [AdminController::class, "update"]);
     Route::get('/validasi', [AdminController::class, "validasi"]);
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"]);
     Route::get('/chartumur', [AdminController::class, "chartumur"]);

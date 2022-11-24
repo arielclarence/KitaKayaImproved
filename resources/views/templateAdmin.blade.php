@@ -53,7 +53,7 @@
                             </a>
                             <a class="nav-link" href="{{url('/admin/chart')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Add Chart
+                                Add Rekomendasi Saham
                             </a>
                             <a class="nav-link" href="{{url('/admin/validasi')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>

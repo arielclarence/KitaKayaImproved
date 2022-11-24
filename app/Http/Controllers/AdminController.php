@@ -17,7 +17,6 @@ class AdminController extends Controller
         $link= $request->input('linkvideo');
     }
 
-
     public function listvideo(){
         return view('Admin.listvideo');
     }
@@ -41,6 +40,38 @@ class AdminController extends Controller
         }
     }
 
+    public function filter(Request $request){
+        $hasil = DB::table('rekomendasi')->where('nama', "LIKE", "%".$request->input("filterKode")."%")->get();
+        return view("Admin.addchart", ["dataSaham" => $hasil]);
+    }
+
+    public function update(Request $request, $id){
+        $nama = $request->input('coba');
+        $keterangan = $request->input('keteranganSaham');
+
+        if ($nama == "" || $keterangan == "") {
+            return redirect()->back()->with('error', 'Semua Harus Diisi!');
+        }else{
+            $result = DB::update('update rekomendasi set nama = ? , keterangan = ? where id = ?', [$nama , $keterangan , $id]);
+
+            if ($result) {
+                return redirect()->route("homeadd")->with("success", "Berhasil Update!");
+            }
+            else{
+                return redirect()->route("homeadd")->with("error", "Gagal Update!");
+            }
+        }
+    }
+
+    public function delete($id){
+        $result = DB::table('rekomendasi')->delete($id);
+
+        if ($result) {
+            return redirect()->route("homeadd")->with("success", "Berhasil Delete!");
+        }else{
+            return redirect()->route("homeadd")->with("error", "Gagal Delete!");
+        }
+    }
 
     public function validasi(){
         return view('Admin.validasipembayaran');
