@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserVIPController extends Controller
 {
@@ -15,7 +16,9 @@ class UserVIPController extends Controller
     }
 
     public function rekomendasi(){
-        return view('UserVip.rekomendasi');
+        $data  = DB::table('rekomendasi')->select('nama', 'keterangan')->get();
+
+        return view('UserVip.rekomendasi', ["listSaham" => $data]);
     }
 
     public function history(){

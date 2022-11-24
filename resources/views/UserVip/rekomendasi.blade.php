@@ -6,8 +6,22 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Saham</li>
         </ol>
+        {{-- gae sorting --}}
+        <form method="POST" action="{{url('/itemsss')}}">
+            @csrf
+            <h2>List Saham Pilihan : </h2>
+            <br>
+            <select name="listSaham" id="saham" class="form-select">
+                @foreach($listSaham as $h)
+                    <option value="{{$h->nama}}" data-provinsi={{$h->keterangan}} >{{$h->nama}}</option>
+                @endforeach
+            </select>
+        </form>
+        <br>
         <h3>Keterangan</h3>
-        <h5></h5>
+        <input type="text" id="input" class="form-control" readonly>
+        <br>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
          <!-- TradingView Widget BEGIN -->
          <div class="tradingview-widget-container">
             <div id="tradingview_5e0cc"></div>
@@ -36,6 +50,17 @@
         </div>
         <!-- TradingView Widget END -->
     </div>
+    <script>
+        // Ambil dari atribut data
+      $(document).ready(function() {
+        $('#saham').on('change', function() {
+          const selected = $(this).find('option:selected');
+          const prov = selected.data('provinsi');
+
+          $("#input").val(prov);
+        });
+      });
+    </script>
 </main>
 @endsection
 

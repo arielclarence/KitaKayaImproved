@@ -27,8 +27,16 @@ class LoginController extends Controller
         if ($ceklogin == true) {
             Session::put("idUser", $in['username']);
             $user = DB::table('user')->where("email","=",$in['username'])->first();
-            Session::put("nama", $user->nama);
-            return view("UserBiasa.home");
+
+            if ($user->role == "0") {
+                Session::put("nama", $user->nama);
+                return view("UserBiasa.home");
+            }else if ($user->role == "1") {
+                Session::put("nama", $user->nama);
+                return view("UserVip.home");
+            }
+
+
         }else if ($request->input("username") == "KITAKAYA@gmail.com" && $request->input("pass") == "000"){
             Session::put("idAdmin", "KITAKAYA@GMAIL.COM");
             return view("Admin.home");

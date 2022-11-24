@@ -29,7 +29,7 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" method="POST">
                 <div class="input-group">
-                    {{-- <h3 style="color: white;">Welcome, {{$nama}}</h3> --}}
+                    <h3 style="color: white;">Welcome, {{Session::get('nama')}}</h3>
                 </div>
             </form>
             <!-- Navbar-->
@@ -75,12 +75,11 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                @include('message')
-                @yield('content')
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-                </script>
-                <script type="text/javascript" src="{{asset('assets/js/scripts.js')}}"></script>
-                <script type="text/javascript" src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+                <main>
+                    <div class="container-fluid px-4">
+                        @yield('content')
+                    </div>
+                </main>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
