@@ -55,7 +55,7 @@ Route::prefix('/admin')->group(function() {
     Route::post('/chart/{id}/edit', [AdminController::class, "update"]);
     Route::get('/validasi', [AdminController::class, "validasi"]);
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"]);
-    Route::get('/chartumur', [AdminController::class, "chartumur"]);
+    Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur');
     Route::post('/addVideo', [VideoController::class, 'add']);
 });
 

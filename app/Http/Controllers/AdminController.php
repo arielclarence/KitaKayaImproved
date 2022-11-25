@@ -82,6 +82,9 @@ class AdminController extends Controller
     }
 
     public function chartumur(){
-        return view('Admin.chartumur');
+        $hitung = DB::select('SELECT umur ,COUNT(*) AS jumlah FROM user GROUP BY umur ORDER BY umur');
+        dd($hitung);
+        // return response()->json($hitung);
+        return view('Admin.chartumur', ["data" => $hitung]);
     }
 }
