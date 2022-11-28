@@ -70,6 +70,7 @@ Route::prefix('/userBiasa')->group(function() {
 Route::prefix('/userVip')->group(function() {
     Route::get('/video', [UserVIPController::class, "view"]);
     Route::get('/forum', [UserVIPController::class, "forum"]);
+    Route::get('/forum/{id}', [UserVIPController::class, "todetailforumvip"])->name('detailforumvip');;
     Route::get('/rekomendasi', [UserVIPController::class, "rekomendasi"]);
     Route::get('/history', [UserVIPController::class, "history"]);
     Route::get('/cs', [UserVIPController::class, "cs"]);

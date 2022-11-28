@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ThreadForum;
+use App\Models\Video;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +15,22 @@ class UserVIPController extends Controller
     }
 
     public function forum(){
-        return view('UserVip.forum');
+        $videos = Video::all();
+
+
+        return view('UserVip.listforum', [
+            "videos" => $videos
+
+        ]);
+    }
+
+    public function todetailforumvip(Request $request){
+
+        $threads = ThreadForum::all()->where('Kategori',  $request->id);
+        return view('UserVip.forum', [
+            "threads" => $threads
+
+        ]);
     }
 
     public function rekomendasi(){
