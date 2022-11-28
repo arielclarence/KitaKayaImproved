@@ -7,6 +7,7 @@
         </ol>
         <br>
         <canvas id="myChart"></canvas>
+        {{-- done --}}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript">
