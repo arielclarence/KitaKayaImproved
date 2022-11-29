@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
+use App\Models\Service;
 use App\Models\ThreadForum;
+use App\Models\User;
 use App\Models\Video;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class UserVIPController extends Controller
 {
@@ -27,9 +31,11 @@ class UserVIPController extends Controller
     public function todetailforumvip(Request $request){
 
         $threads = ThreadForum::all()->where('Kategori',  $request->id);
-        return view('UserVip.forum', [
-            "threads" => $threads
+        $video = Video::find($request->id);
 
+        return view('UserVip.forum', [
+            "threads" => $threads,
+            "video" => $video
         ]);
     }
 
@@ -44,6 +50,22 @@ class UserVIPController extends Controller
     }
 
     public function cs(){
-        return view('UserBiasa.cs');
+
+        $user = User::all()->where('nama', Session::get('nama'))->first();
+        $services = Service::all()->where('member',  $user->id);
+
+        return view('UserVip.cs', [
+            "services" => $services
+
+        ]);
+    }
+    public function todetailcsvip(Request $request){
+        $service = Service::find($request->id);
+
+        $chats = Chat::all()->where('service',  $service->id);
+        return view('UserVip.chat', [
+            "service" => $service,
+            "chats" => $chats
+        ]);
     }
 }

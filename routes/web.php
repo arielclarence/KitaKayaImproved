@@ -74,6 +74,8 @@ Route::prefix('/userVip')->group(function() {
     Route::get('/rekomendasi', [UserVIPController::class, "rekomendasi"]);
     Route::get('/history', [UserVIPController::class, "history"]);
     Route::get('/cs', [UserVIPController::class, "cs"]);
+    Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');;
+
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
