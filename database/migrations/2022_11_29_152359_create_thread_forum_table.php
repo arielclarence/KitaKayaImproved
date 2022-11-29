@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('thread_forum', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('nama');
-            $table->integer('umur');
-            $table->integer('role');
-            $table->integer('status');
-            $table->timestamp('expired')->nullable();
-            $table->rememberToken();
+            $table->text('judul');
+            $table->text('isi');
+            $table->text('namamember');
+            $table->integer('kategori');
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('thread_forum');
     }
 };

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rekomendasi', function (Blueprint $table) {
             $table->id();
-            $table->text('nama');
+            $table->text('name');
             $table->text('keterangan');
             $table->timestamps();
         });

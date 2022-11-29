@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->integer('member');
+            $table->integer('id_member');
             $table->integer('bulan');
             $table->integer('subtotal');
+            $table->text('bukti');
+            $table->integer('status');
             $table->timestamps();
         });
     }

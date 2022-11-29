@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('thread', function (Blueprint $table) {
             $table->id();
             $table->text('judul');
-            $table->integer('video');
+            $table->text('video');
+            $table->integer('status_video');
+            $table->integer('f_kategori');
             $table->timestamps();
         });
     }

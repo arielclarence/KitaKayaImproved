@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Thread;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,8 @@ class VideoController extends Controller
         $kategori = $request->kategori;
         $link = $request->link;
 
-        $video = new Video();
-        $video->judul = $judul;
-        $video->location = $link;
-        $video->bab = $kategori;
-        $video->vip = 0;
-        $video->save();
+        $thread = new Thread();
+        $thread->judul = $judul;
+        $thread->video = $link;
     }
 }

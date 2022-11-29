@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comment', function (Blueprint $table) {
             $table->id();
             $table->integer('thread');
-            $table->integer('member');
+            $table->text('namamember');
             $table->text('isi');
             $table->integer('reply');
             $table->timestamps();
