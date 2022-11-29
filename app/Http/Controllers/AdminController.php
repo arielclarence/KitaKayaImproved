@@ -114,4 +114,15 @@ class AdminController extends Controller
         Session::forget("idAdmin");
         return redirect()->route("login");
     }
+
+    public function getMemberByYear(Request $request)
+    {
+        $date = $request->year;
+
+        $data = DB::select("SELECT MONTH(created_at) AS month, SUM(ID) AS total FROM USER WHERE YEAR(created_at) = $date GROUP BY YEAR(created_at), MONTH(created_at) ASC");
+
+        // $data = DB::select('SELECT SUM(ID) FROM USER');
+
+        return response()->json($data, 200);
+    }
 }
