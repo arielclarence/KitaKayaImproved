@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('umur');
             $table->integer('role');
             $table->integer('status');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -27,74 +27,14 @@
 </head>
 
 <body>
-    <section class="vh-100">
+    @include('message')
+    @include('sweetalert::alert')
+    <section class="vh-200">
         <div class="container py-5 h-100">
-            {{-- <div class="row d-flex align-items-center justify-content-center h-100">
-                <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img src="{{asset('assets/img/fotologin.jpg')}}" class="img-fluid" alt="Phone image">
-                </div>
-                <div class="col-md-5 col-lg-5 col-xl-5 offset-xl-1 bg-white">
-                    <form method="POST">
-                        @csrf
-                        <!-- Username input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Email</label>
-                            <input type="email" id="form1Example13" class="form-control form-control-lg" name="email" />
-                            @error("email")
-                            <small style="color:blue">{{$message}}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Password</label>
-                            <input type="password" id="form1Example23" class="form-control form-control-lg"
-                                name="pass" />
-                            @error("pass")
-                            <small style="color:blue">{{$message}}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Confirm Password input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Confirm Password</label>
-                            <input type="password" id="form1Example23" class="form-control form-control-lg"
-                                name="connpass" />
-                            @error("connpass")
-                            <small style="color:blue">{{$message}}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Nama input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="form1Example23">Nama</label>
-                            <input type="text" class="form-control form-control-lg" name="nama" />
-                            @error("nama")
-                            <small style="color:blue">{{$message}}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Umur input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label">Umur</label>
-                            <input type="text" class="form-control form-control-lg" name="umur" />
-                            @error("umur")
-                            <small style="color:blue">{{$message}}</small>
-                            @enderror
-                        </div>
-
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
-                        <div>Sudah punya akun? <a href="{{url('/')}}">Login Sekarang</a></div>
-                    </form>
-                </div>
-            </div> --}}
             <div class="row">
-
                 <div class="col-7 position-relative">
                     <img src="{{asset('assets/img/authentication.svg')}}" class=" position-absolute top-50 start-50 translate-middle img-fluid w-100" alt="Phone image">
                 </div>
-
                 <div class="col-5 bg-white p-4 rounded-2 shadow">
                     <h1 class="text-center">Register Your Account</h1>
                     <form method="POST">
@@ -145,6 +85,19 @@
                             @enderror
                         </div>
 
+                        {{-- terms and condition --}}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="cb" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I agree to the KITAKAYA Terms and condition
+                            </label>
+                            <br>
+                            @error("cb")
+                            <small style="color:blue">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <br>
+
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
                         <br><br>
@@ -152,8 +105,6 @@
                     </form>
                 </div>
             </div>
-            {{-- <div class="row d-flex align-items-center justify-content-center h-100">
-            </div> --}}
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

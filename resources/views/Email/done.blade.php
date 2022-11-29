@@ -17,10 +17,6 @@
         <h1>Email verified!</h1>
         <h3>Redirecting you to main page...</h3>
         <h5>Click here if you're not redirected after 3 seconds</h5>
-        <form action="{{ url('/') }}">
-            @csrf
-            <button class="btn btn-danger" type="submit">Go Back</button>
-        </form>
     </div>
 </body>
 </html>
