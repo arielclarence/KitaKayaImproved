@@ -451,6 +451,9 @@
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary" name="login">Login</button>
                                     </div>
+                                    <br>
+                                    Tidak Punya Akun ?
+                                    <a href="{{url("/register")}}">Register</a>
                                 </form>
                             </div>
                         </div>

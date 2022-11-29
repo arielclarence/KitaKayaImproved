@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -32,17 +34,27 @@ class AdminController extends Controller
         $keterangan = $request->input('keterangan');
 
         if ($namasaham == "" || $keterangan == "") {
-            return redirect()->back()->with('error', 'Semua Harus Diisi!');
+            Alert::error('Error', 'Tidak boleh ada yang kosong!');
+            return redirect()->back();
         }
         else{
             DB::insert('insert into rekomendasi (nama, keterangan) values (?, ?)', [$namasaham, $keterangan]);
-            return redirect()->back()->with('success', 'Berhasil Add');
+            Alert::success('Success', 'Berhasil Add!');
+            return redirect()->back();
         }
     }
 
     public function filter(Request $request){
-        $hasil = DB::table('rekomendasi')->where('nama', "LIKE", "%".$request->input("filterKode")."%")->get();
-        return view("Admin.addchart", ["dataSaham" => $hasil]);
+        $filter = $request->input('filterKode');
+
+        if ($filter == "") {
+            Alert::error('Error', 'Tidak boleh ada yang kosong!');
+            return redirect()->back();
+        }else{
+            $hasil = DB::table('rekomendasi')->where('nama', "LIKE", "%".$request->input("filterKode")."%")->get();
+            Alert::success('Success', 'Berhasil Filter!');
+            return view("Admin.addchart", ["dataSaham" => $hasil]);
+        }
     }
 
     public function update(Request $request, $id){
@@ -50,15 +62,18 @@ class AdminController extends Controller
         $keterangan = $request->input('keteranganSaham');
 
         if ($nama == "" || $keterangan == "") {
-            return redirect()->back()->with('error', 'Semua Harus Diisi!');
+            Alert::error('Error', 'Tidak boleh ada yang kosong!');
+            return redirect()->back();
         }else{
             $result = DB::update('update rekomendasi set nama = ? , keterangan = ? where id = ?', [$nama , $keterangan , $id]);
 
             if ($result) {
-                return redirect()->route("homeadd")->with("success", "Berhasil Update!");
+                Alert::success('Success', 'Berhasil Update!');
+                return redirect()->route("homeadd");
             }
             else{
-                return redirect()->route("homeadd")->with("error", "Gagal Update!");
+                Alert::error('Error', 'Gagal Update!');
+                return redirect()->route("homeadd");
             }
         }
     }
@@ -67,9 +82,11 @@ class AdminController extends Controller
         $result = DB::table('rekomendasi')->delete($id);
 
         if ($result) {
-            return redirect()->route("homeadd")->with("success", "Berhasil Delete!");
+            Alert::success('Success', 'Berhasil Delete!');
+            return redirect()->route("homeadd");
         }else{
-            return redirect()->route("homeadd")->with("error", "Gagal Delete!");
+            Alert::error('Error', 'Gagal Delete!');
+            return redirect()->route("homeadd");
         }
     }
 
@@ -86,5 +103,10 @@ class AdminController extends Controller
         // dd($hitung);
         // return response()->json($hitung);
         return view('Admin.chartumur', ["data" => $hitung]);
+    }
+
+    public function logout(){
+        Session::forget("idAdmin");
+        return redirect()->route("login");
     }
 }

@@ -11,6 +11,12 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/punyaadmin.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/addvideo.css')}}">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+        <style>
+            #btnkeluar{
+                margin-left: 45px;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -29,10 +35,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
-                        <!-- <li><hr class="dropdown-divider" /></li> -->
-                        <li><a class="dropdown-item" href="../index.php">Logout</a></li>
+                        <li><a href="{{url("/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>

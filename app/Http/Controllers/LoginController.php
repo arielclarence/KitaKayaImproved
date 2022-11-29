@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class LoginController extends Controller
 {
@@ -29,9 +31,19 @@ class LoginController extends Controller
             $user = DB::table('user')->where("email","=",$in['username'])->first();
 
             if ($user->role == "0") {
+                // if ($user->email_verified_at == null) {
+                //     # code...
+                //     Alert::error('Email', 'Email Belum Terverifikasi!');
+                //     return redirect()->back();
+                // }
                 Session::put("nama", $user->nama);
                 return view("UserBiasa.home");
             }else if ($user->role == "1") {
+                // if ($user->email_verified_at == null) {
+                //     # code...
+                //     Alert::error('Email', 'Email Belum Terverifikasi!');
+                //     return redirect()->back();
+                // }
                 Session::put("nama", $user->nama);
                 return view("UserVip.home");
             }
@@ -57,7 +69,8 @@ class LoginController extends Controller
             "pass" => ["required"],
             "connpass" => ["required", "same:pass"],
             "nama" => ["required"],
-            "umur" => ["required"]
+            "umur" => ["required"],
+            "cb" => ["required"]
         ]);
 
         $result = User::create([
@@ -72,6 +85,8 @@ class LoginController extends Controller
         event(new Registered($result));
 
         $result->sendEmailVerificationNotification();
+
+        // Auth::login($result);
 
         return redirect(url("/email/verify"))->with("email",$in["email"]);
     }

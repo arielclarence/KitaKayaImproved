@@ -57,6 +57,7 @@ Route::prefix('/admin')->group(function() {
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"]);
     Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur');
     Route::post('/addVideo', [VideoController::class, 'add']);
+    Route::get('/logout', [AdminController::class, "logout"]);
 });
 
 Route::prefix('/userBiasa')->group(function() {
