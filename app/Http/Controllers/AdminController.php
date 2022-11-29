@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -20,7 +21,11 @@ class AdminController extends Controller
     }
 
     public function listvideo(){
-        return view('Admin.listvideo');
+        $kategori = Kategori::all();
+
+        return view('Admin.listvideo', [
+            'kategori' => $kategori
+        ]);
     }
 
     public function chart(){
