@@ -14,7 +14,7 @@
 
         <style>
             #btnkeluar{
-                margin-left: 45px;
+                margin-left: 40px;
             }
         </style>
     </head>
@@ -35,7 +35,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a href="{{url("/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
+                        <li><a href="{{url("/admin/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>
@@ -80,8 +80,6 @@
             <div id="layoutSidenav_content">
                 @include('message')
                 @yield('content')
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-                </script>
                 <script type="text/javascript" src="{{asset('assets/js/scripts.js')}}"></script>
                 <script type="text/javascript" src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
