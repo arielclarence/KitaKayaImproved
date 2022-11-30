@@ -17,24 +17,28 @@ class VideoController extends Controller
         $kategori = $request->kategori;
         $link = $request->link;
 
-        $cat = Kategori::where('nama_kategori','=',$kategori)->first();
-        if ($cat == null) {
-            $cat = new Kategori();
-            $cat->nama_kategori = $kategori;
-            $cat->status = 1;
-            $cat->save();
+        if ($judul == "" || $kategori == "" || $link == "") {
+            Alert::error('Error', 'Semua Harus Diisi !');
+            return redirect('/admin/home');
+        }else{
+            $cat = Kategori::where('nama_kategori','=',$kategori)->first();
+            if ($cat == null) {
+                $cat = new Kategori();
+                $cat->nama_kategori = $kategori;
+                $cat->status = 1;
+                $cat->save();
+            }
+
+            $thd = new Thread();
+            $thd->judul = $judul;
+            $thd->video = $link;
+            $thd->status_video = 1;
+            $thd->f_kategori = $cat->id;
+            $thd->save();
+
+            Alert::success('Success', 'Berhasil Add Video !');
+            return redirect('/admin/home');
         }
-
-        $thd = new Thread();
-        $thd->judul = $judul;
-        $thd->video = $link;
-        $thd->status_video = 1;
-        $thd->f_kategori = $cat->id;
-        $thd->save();
-
-        Alert::success('Success', 'Berhasil Add Video !');
-
-        return back();
     }
 
     public function getByKategori(Request $request)

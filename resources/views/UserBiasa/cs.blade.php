@@ -89,11 +89,6 @@
     .ratingg:hover>input:checked~label:before {
     opacity: 0.4
     }
-
-
-
-
-
 </style>
 <main>
     <div class="container-fluid px-4">
@@ -101,9 +96,8 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Saham</li>
         </ol>
-
         <form class="form-horizontal" action="{{ route('addpertanyaan') }}" method="POST">
-@csrf
+            @csrf
             <label class="control-label"  for="namamenu">Pertanyaan</label>
             <br>
             <br>
@@ -116,34 +110,27 @@
             </div>
         </form>
         <br>
-
-            <table class="table table-dark table-striped">
+        <table class="table table-dark table-striped">
                 <thead>
-                <th>ID</th>
-
+                    <th>ID</th>
                     <th>Judul Pertanyaan</th>
                     <th>Rate</th>
-                    <th>Chat</th>
-
+                    <th colspan="2">Chat</th>
                 </thead>
                 @forelse ($services as $service)
-                <tr>
-                    <td>{{ $service->id}}</td>
-                    <td>{{ $service->judul}}</td>
-                    <td>{{ $service->rate}}</td>
-
-                    <td><button class="btn btn-danger" id="btnclear" ><a href="{{ route('detailcs', $service->id) }}">Chat</a></button><td>
-
-
-
-                </tr>
-            @empty
-                {{-- HANYA TAMPIL JIKA LIST BUKU KOSONG --}}
-                <tr>
-                    <td colspan="7" style="text-align: center;">Tidak ada item saat ini!</td>
-                </tr>
+                    <tr>
+                        <td>{{ $service->id}}</td>
+                        <td>{{ $service->judul}}</td>
+                        <td>{{ $service->rate}}</td>
+                        <td><a href="{{ route('detailcs', $service->id) }}" class="btn btn-danger">Chat</a><td>
+                    </tr>
+                @empty
+                    {{-- HANYA TAMPIL JIKA LIST BUKU KOSONG --}}
+                    <tr>
+                        <td colspan="7" style="text-align: center;">Tidak ada item saat ini!</td>
+                    </tr>
             @endforelse
-            </table>
+        </table>
     </div>
 </main>
 @endsection

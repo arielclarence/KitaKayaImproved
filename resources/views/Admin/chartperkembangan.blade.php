@@ -9,6 +9,7 @@
     {{-- <select name="" id="tahun"></select> --}}
     <div class="mb-4">
         <input type="number" placeholder="Masukan Tahun" id="tahun" class="form-control">
+        <br>
         <button id="search" class="btn btn-primary">search</button>
     </div>
 

@@ -71,9 +71,9 @@
                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 1 Bulan di depan</p>
                     </ul>
                     <div class="card-body text-center">
-                    {{-- <form action="../controllers/auth.php" method="POST">
-                        <a href="../public/halamantransaksi.php?harga=120.000&bulan=1&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
-                    </form> --}}
+                    <form action="../controllers/auth.php" method="POST">
+                        <a href="" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
+                    </form>
                     </div>
                 </div>
                 </div>
@@ -102,9 +102,9 @@
                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 6 Bulan di depan</p>
                     </ul>
                     <div class="card-body text-center">
-                    {{-- <form action="../controllers/auth.php" method="POST">
-                        <a href="../public/halamantransaksi.php?harga=500.000&bulan=6&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
-                    </form> --}}
+                    <form action="../controllers/auth.php" method="POST">
+                        <a href="" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
+                    </form>
                     </div>
                 </div>
                 </div>
@@ -133,9 +133,9 @@
                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 12 Bulan di depan</p>
                     </ul>
                     <div class="card-body text-center">
-                    {{-- <form action="../controllers/auth.php" method="POST">
-                        <a href="../public/halamantransaksi.php?harga=1.100.000&bulan=12&namacus=<?=$munculkan?>" class="btn btn-outline-primary btn-lg" style="border-radius:30px">Beli</a>
-                    </form> --}}
+                    <form action="../controllers/auth.php" method="POST">
+                        <a href="" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
+                    </form>
                     </div>
                 </div>
             </div>

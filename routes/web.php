@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\CsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 // jangan lupa import sayang
@@ -58,6 +59,11 @@ Route::prefix('/admin')->group(function() {
     Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur');
     Route::post('/addVideo', [VideoController::class, 'add']);
     Route::get('/logout', [AdminController::class, "logout"]);
+});
+
+Route::prefix('/cs')->group(function() {
+    Route::get('/chat', [CsController::class, "chat"]);
+    Route::get('/forum', [CsController::class, "forum"]);
 });
 
 Route::prefix('/userBiasa')->group(function() {

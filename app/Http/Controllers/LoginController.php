@@ -37,7 +37,7 @@ class LoginController extends Controller
                 //     return redirect()->back();
                 // }
                 Session::put("nama", $user->nama);
-                return view("UserBiasa.home");
+                return redirect('/userBiasa/video');
             }else if ($user->role == "1") {
                 // if ($user->email_verified_at == null) {
                 //     # code...
@@ -45,13 +45,16 @@ class LoginController extends Controller
                 //     return redirect()->back();
                 // }
                 Session::put("nama", $user->nama);
-                return view("UserVip.home");
+                return redirect('/userVip/video');
             }
 
 
         }else if ($request->input("username") == "KITAKAYA@gmail.com" && $request->input("pass") == "000"){
             Session::put("idAdmin", "KITAKAYA@GMAIL.COM");
             return view("Admin.home");
+        }else if ($request->input("username") == "csKITAKAYA@gmail.com" && $request->input("pass") == "cs"){
+            Session::put("idCs", "csKITAKAYA@GMAIL.COM");
+            return redirect('/cs/chat');
         }
         else{
             return redirect()->back()->with("error", "Gagal Login!");
