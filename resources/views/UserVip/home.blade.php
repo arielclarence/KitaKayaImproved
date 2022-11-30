@@ -3,12 +3,15 @@
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Cari Video</h1>
-        <select id="kategori" class="form-control">
+        {{-- <select id="kategori" class="form-control">
             <option value="" selected disabled>Pilih kategori video..</option>
-            @foreach ($kategori as $item)
+            @forelse ($kategori as $item)
                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-            @endforeach
-        </select>
+            @empty
+
+            @endforelse
+
+        </select> --}}
         <br>
         <br>
         <div class="d-flex" id="list">

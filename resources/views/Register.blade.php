@@ -29,7 +29,7 @@
 <body>
     @include('message')
     @include('sweetalert::alert')
-    <section class="vh-200">
+    <section class="vh-100">
         <div class="container py-5 h-100">
             <div class="row">
                 <div class="col-7 position-relative">

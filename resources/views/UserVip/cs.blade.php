@@ -91,6 +91,7 @@
     }
 </style>
 <main>
+    @include('sweetalert::alert')
     <div class="container-fluid px-4">
         <h1 class="mt-4">Customer Service</h1>
         <ol class="breadcrumb mb-4">
@@ -98,7 +99,7 @@
         </ol>
 
         <form class="form-horizontal" action="{{ route('addpertanyaanvip') }}" method="POST">
-@csrf
+            @csrf
             <label class="control-label"  for="namamenu">Pertanyaan</label>
             <br>
             <br>
@@ -114,23 +115,17 @@
 
             <table class="table table-dark table-striped">
                 <thead>
-                <th>ID</th>
-
+                    <th>ID</th>
                     <th>Judul Pertanyaan</th>
                     <th>Rate</th>
-                    <th>Chat</th>
-
+                    <th colspan="2">Chat</th>
                 </thead>
                 @forelse ($services as $service)
                 <tr>
                     <td>{{ $service->id}}</td>
                     <td>{{ $service->judul}}</td>
                     <td>{{ $service->rate}}</td>
-
-                    <td><button class="btn btn-danger" id="btnclear" ><a href="{{ route('detailcsvip', $service->id) }}">Chat</a></button><td>
-
-
-
+                    <td><a href="{{ route('detailcsvip', $service->id) }}" class="btn btn-danger">Chat</a><td>
                 </tr>
             @empty
                 {{-- HANYA TAMPIL JIKA LIST BUKU KOSONG --}}

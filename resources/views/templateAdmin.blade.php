@@ -14,7 +14,7 @@
 
         <style>
             #btnkeluar{
-                margin-left: 40px;
+                margin-left: 45px;
             }
         </style>
     </head>
@@ -35,7 +35,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a href="{{url("/admin/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
+                        <li><a href="{{url("/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>
