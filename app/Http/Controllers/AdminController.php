@@ -119,10 +119,10 @@ class AdminController extends Controller
     {
         $date = $request->year;
 
-        $data = DB::select("SELECT MONTH(created_at) AS month, SUM(ID) AS total FROM USER WHERE YEAR(created_at) = $date GROUP BY YEAR(created_at), MONTH(created_at) ASC");
+        $data = DB::select("SELECT MONTH(created_at) AS month, COUNT(ID) AS total FROM USER WHERE YEAR(created_at) = $date GROUP BY YEAR(created_at), MONTH(created_at) ASC");
 
-        // $data = DB::select('SELECT SUM(ID) FROM USER');
+        // $data = DB::select("SELECT MONTH(created_at) as month FROM USER WHERE YEAR(CREATED_AT) = $date GROUP BY MONTH(CREATED_AT)");
 
-        return response()->json($data, 200);
+        return response()->json([$data, $date], 200);
     }
 }
