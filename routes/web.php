@@ -66,16 +66,34 @@ Route::prefix('/userBiasa')->group(function() {
     Route::get('/upgrade', [UserBiasaController::class, "upgrade"]);
     Route::get('/history', [UserBiasaController::class, "history"]);
     Route::get('/cs', [UserBiasaController::class, "cs"]);
+    Route::post('/pertanyaan', [UserBiasaController::class, "addpertanyaan"])->name('addpertanyaan');
+
+    Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs');
+    Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat');
+
 });
 
 Route::prefix('/userVip')->group(function() {
     Route::get('/video', [UserVIPController::class, "view"]);
     Route::get('/forum', [UserVIPController::class, "forum"]);
-    Route::get('/forum/{id}', [UserVIPController::class, "todetailforumvip"])->name('detailforumvip');;
+    Route::get('/forum/{id}', [UserVIPController::class, "todetailforumvip"])->name('detailforumvip');
+    Route::get('/editpost/{id}', [UserVIPController::class, "toeditpostforumvip"])->name('toeditpostforumvip');
+    Route::post('/editpost/{id}', [UserVIPController::class, "editpostforumvip"])->name('editpostforumvip');
+    Route::get('/editreply/{id}', [UserVIPController::class, "toeditreplyforumvip"])->name('toeditreplyforumvip');
+    Route::post('/editreply/{id}', [UserVIPController::class, "editreplyforumvip"])->name('editreplyforumvip');
+
+    Route::post('/forum/{id}', [UserVIPController::class, "addpostforumvip"])->name('addpostforumvip');
+    Route::post('/addreply/{id}', [UserVIPController::class, "addreplyforumvip"])->name('addreplyforumvip');
+    Route::post('/addreplycomment/{id}', [UserVIPController::class, "addreplycommentforumvip"])->name('addreplycommentforumvip');
+
     Route::get('/rekomendasi', [UserVIPController::class, "rekomendasi"]);
     Route::get('/history', [UserVIPController::class, "history"]);
     Route::get('/cs', [UserVIPController::class, "cs"]);
-    Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');;
+    Route::post('/pertanyaan', [UserVIPController::class, "addpertanyaanvip"])->name('addpertanyaanvip');
+
+    Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');
+    Route::post('/chat/{id}', [UserVIPController::class, "addchatvip"])->name('addchatvip');
+
 
 });
 

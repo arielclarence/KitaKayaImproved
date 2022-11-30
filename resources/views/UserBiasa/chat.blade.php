@@ -1,4 +1,4 @@
-@extends('templatehomevip')
+@extends('templateHome')
 @section('content')
 
 <h1 class="mt-4">{{ $service->judul}}</h1>
@@ -16,7 +16,7 @@
                     <br>
                     @endif
                 @empty
-                    
+
                     <tr>
                         <td colspan="7" style="text-align: center;">Tidak ada Chat saat ini!</td>
                     </tr>
@@ -24,7 +24,7 @@
 
         </tbody>
     </table>
-    <form class="form-horizontal" action="{{ route('addchatvip', $service->id) }}" method="POST">
+    <form class="form-horizontal" action="{{ route('addchat', $service->id) }}" method="POST">
         @csrf
         <h1>Chat</h1>
 
@@ -33,7 +33,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddchat" >Chat</button>
         <br>
         <br>
-        <a href="/userVip/cs"><button type="button">Back To Dashboard</button></a>
+        <a href="/userBiasa/cs"><button type="button">Back To Dashboard</button></a>
 
 
 

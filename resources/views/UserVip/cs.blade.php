@@ -97,12 +97,13 @@
             <li class="breadcrumb-item active">Saham</li>
         </ol>
 
-        <form action="../controllers/service.php" method="POST">
+        <form class="form-horizontal" action="{{ route('addpertanyaanvip') }}" method="POST">
+@csrf
             <label class="control-label"  for="namamenu">Pertanyaan</label>
             <br>
             <br>
             <div class="controls">
-                <input type="text" class="form-control" id="namamenu" name="judul" placeholder="Pertanyaan">
+                <input type="text" class="form-control" name="isi" placeholder="Pertanyaan">
             </div>
             <br>
             <div class="col-12">
