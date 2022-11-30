@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\Kategori;
 use App\Models\Service;
 use App\Models\ThreadForum;
 use App\Models\User;
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Session;
 class UserVIPController extends Controller
 {
     public function view(){
-        return view('UserVip.home');
+        $kategori = Kategori::all();
+
+        return view('UserVip.home', [
+            'kategori' => $kategori
+        ]);
     }
 
     public function forum(){
