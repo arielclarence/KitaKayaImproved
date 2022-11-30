@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Kategori;
 use App\Models\Chat;
 use App\Models\Service;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class UserBiasaController extends Controller
 {
     public function view(){
-        return view('UserBiasa.home');
+        $kategori = DB::select("SELECT * FROM KATEGORI_VID LIMIT 3");
+
+        return view('UserBiasa.home', [
+            'kategori' => $kategori
+        ]);
     }
     public function todetailcs(Request $request){
         $service = Service::find($request->id);
