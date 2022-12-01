@@ -26,7 +26,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: '/get/video',
+                url: " {{ url('/get/video') }} ",
                 data: {
                     kategori: kategoriId
                 },

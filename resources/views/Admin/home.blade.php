@@ -7,7 +7,7 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Saham</li>
         </ol>
-        <form method="POST" action="/admin/addVideo">
+        <form method="POST" action="{{ url('/admin/addVideo') }}">
             @csrf
             <div>
                 <div class="col-lg-6">

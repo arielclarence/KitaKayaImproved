@@ -18,9 +18,7 @@
     <canvas id="chart" class="w-100"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-crossorigin="anonymous">
-</script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
         $('#search').click(function(){
@@ -36,7 +34,7 @@ crossorigin="anonymous">
     function getMemberByYear(year) {
         $.ajax({
             type: 'GET',
-            url: '/get/chart/perkembangan',
+            url: '{{url('/get/chart/perkembangan')}}',
             data: {
                 year: year
             },
