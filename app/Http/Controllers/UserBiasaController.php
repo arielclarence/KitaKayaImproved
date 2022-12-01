@@ -300,7 +300,10 @@ class UserBiasaController extends Controller
     }
 
     public function history(){
-        return view('UserBiasa.history');
+        $listHistory = DB::table('transaksi')->get();
+        return view('UserBiasa.history', [
+            "listHistory" => $listHistory
+        ]);
     }
 
     public function cs(){
