@@ -159,8 +159,6 @@ class UserVIPController extends Controller
             "comments" => $comments
 
         ]);
-
-
     }
     public function addreplyforumvip(Request $request){
 
@@ -186,7 +184,8 @@ class UserVIPController extends Controller
 
         $threads = ThreadForum::all()->where('kategori',  $idforum);
         $video = Video::find($idforum);
-        $comments = Comment::all()->where('thread',  $idforum);
+        $comments = Comment::all();
+
 
         $idkategori=$idforum;
 
@@ -197,8 +196,6 @@ class UserVIPController extends Controller
             "comments" => $comments
 
         ]);
-
-
     }
     public function addreplycommentforumvip(Request $request){
 

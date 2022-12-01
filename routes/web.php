@@ -69,6 +69,16 @@ Route::prefix('/cs')->group(function() {
 Route::prefix('/userBiasa')->group(function() {
     Route::get('/video', [UserBiasaController::class, "view"]);
     Route::get('/forum', [UserBiasaController::class, "forum"]);
+    Route::get('/forum/{id}', [UserBiasaController::class, "todetailforumbiasa"])->name('detailforumbiasa');
+    Route::get('/editpost/{id}', [UserBiasaController::class, "toeditpostforumbiasa"])->name('toeditpostforumbiasa');
+    Route::post('/editpost/{id}', [UserBiasaController::class, "editpostforumbiasa"])->name('editpostforumbiasa');
+    Route::get('/editreply/{id}', [UserBiasaController::class, "toeditreplyforumbiasa"])->name('toeditreplyforumbiasa');
+    Route::post('/editreply/{id}', [UserBiasaController::class, "editreplyforumbiasa"])->name('editreplyforumbiasa');
+
+    Route::post('/forum/{id}', [UserBiasaController::class, "addpostforumbiasa"])->name('addpostforumbiasa');
+    Route::post('/addreply/{id}', [UserBiasaController::class, "addreplyforumbiasa"])->name('addreplyforumbiasa');
+    Route::post('/addreplycomment/{id}', [UserBiasaController::class, "addreplycommentforumbiasa"])->name('addreplycommentforumbiasa');
+
     Route::get('/upgrade', [UserBiasaController::class, "upgrade"]);
     Route::get('/history', [UserBiasaController::class, "history"]);
     Route::get('/cs', [UserBiasaController::class, "cs"]);
