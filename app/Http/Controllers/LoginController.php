@@ -76,14 +76,24 @@ class LoginController extends Controller
             "cb" => ["required"]
         ]);
 
-        $result = User::create([
-            "email" => $in["email"],
-            "password" => password_hash($in["pass"], PASSWORD_DEFAULT),
-            "nama" => $in["nama"],
-            "umur" => $in["umur"],
-            "role" => 0,
-            "status" => 1
-        ]);
+        // $result = User::create([
+        //     "email" => $in["email"],
+        //     "password" => password_hash($in["pass"], PASSWORD_DEFAULT),
+        //     "nama" => $in["nama"],
+        //     "umur" => $in["umur"],
+        //     "role" => 0,
+        //     "status" => 1
+        // ]);
+
+        $result = new User();
+        $result->nama = $request->nama;
+        $result->email = $request->email;
+        $result->password = $request->pass;
+        $result->umur = $request->umur;
+        $result->role = 1;
+        $result->status = 1;
+        $result->exp = 0;
+        $result->save();
 
         event(new Registered($result));
 

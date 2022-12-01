@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('umur');
             $table->integer('role');
             $table->integer('status');
+            $table->integer('exp');
             $table->timestamp('expired')->nullable();
             $table->rememberToken();
             $table->timestamps();
