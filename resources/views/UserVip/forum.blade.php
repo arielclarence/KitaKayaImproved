@@ -30,7 +30,7 @@
                                             <h4>(Edited)</h4>
 
                                         @endif
-                                        <h4>Judul Post : <?= $thread->Judul?></h4>
+                                        <h4>Judul Post : <?= $thread->judul?></h4>
                                         <h4>Isi Post : <?= $thread->isi?></h4>
                                         <h4>Poster : <?= $thread->namamember?></h4>
                                         <input type="text"  name="isi" placeholder="Isi reply" class="form-control">
@@ -46,7 +46,7 @@
                                     </div>
                                     </form>
                                     @foreach ($comments as $comment)
-                                        @if ($comment->thread_forum==$thread->id)
+                                        @if ($comment->thread==$thread->id)
                                         <form action="{{ route('addreplycommentforumvip', $comment->id) }}" method="POST">
                                             @csrf
                                             <br>
@@ -61,10 +61,8 @@
                                                 <h4>(Edited)</h4>
 
                                                 @endif
-                                                <h4>{{$date}}</h4>
-                                                <h4>{{$time}}</h4>
-                                                <h4 style="margin-left: 20px;">Pereply : {{$comment->member}}</h4>
-                                                <h4 style="margin-left: 20px;">Isi : {{$comment->isi}}</h4>
+                                                <p style="margin-left: 20px;"><b>{{$comment->namamember}}</b> {{$date}} {{$time}}</p>
+                                                <h4 style="margin-left: 20px;">{{$comment->isi}}</h4>
                                                 <input type="text" name="isi" placeholder="Isi reply" class="form-control" style="margin-left: 20px;">
                                                 <div class="action d-flex justify-content-between mt-2 align-items-center">
                                                     <button style="margin-left: 20px;" class="btn btn-primary" name="replycomment[]">Reply</button>
@@ -75,7 +73,7 @@
                                         <form action="{{ route('toeditreplyforumvip', $comment->id) }}" method="GET">
                                             @csrf
                                         <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                            <button type="submit" class="btn btn-primary" >Edit</button>
+                                            <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
                                         </div>
                                         </form>
 
@@ -89,7 +87,7 @@
                                                     @endphp
                                                     @foreach ($comments as $reply)
 
-                                                    @if ($thread->id==$reply->thread_forum&&$reply->reply==$idcomment)
+                                                    @if ($thread->id==$reply->thread&&$reply->reply==$idcomment)
                                                         @php
                                                             $cek=$cek+1;
                                                         @endphp
@@ -109,7 +107,7 @@
                                                             <h4>(Edited)</h4>
 
                                                             @endif
-                                                            <h4 style="margin-left: 20px;">Pereply : {{$commentreply->member}}</h4>
+                                                            <h4 style="margin-left: 20px;">Pereply : {{$commentreply->namamember}}</h4>
                                                             <h4 style="margin-left: 20px;">Isi : {{$commentreply->isi}}</h4>
                                                             <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 60px;">
                                                             <div class="action d-flex justify-content-between mt-2 align-items-center">
@@ -153,7 +151,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddpost" >Post</button>
         <br>
         <br>
-        <a href="/userVip/forum"><button type="button">Back To Dashboard</button></a>
+        <a href="/userVip/forum"><button type="button" class="btn btn-danger">Back To Dashboard</button></a>
 
     </form>
 @endsection

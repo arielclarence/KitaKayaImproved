@@ -36,9 +36,10 @@ class UserVIPController extends Controller
 
     public function todetailforumvip(Request $request){
 
-        $threads = ThreadForum::all()->where('Kategori',  $request->id);
+        $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread_forum',  $request->id);
+        $comments = Comment::all()->where('thread',  $request->id);
+        // dd($comments);
 
         $idkategori=$request->id;
 
@@ -61,8 +62,8 @@ class UserVIPController extends Controller
 
         $comment = Comment::find($request->id);
 
-        $threadforum = ThreadForum::find($comment->thread_forum);
-        $idforum=$threadforum->Kategori;
+        $threadforum = ThreadForum::find($comment->thread);
+        $idforum=$threadforum->kategori;
         return view('UserVip.editreply', [
             "comment" => $comment,
             "idforum" => $idforum
@@ -80,13 +81,12 @@ class UserVIPController extends Controller
         ];
         $request->validate($rules, $messages);
         $data = ThreadForum::find($request->id);
-        $data->Judul = $request->judul;
+        $data->judul = $request->judul;
         $data->isi = $request->isi;
         $data->save();
-dd($data);
-        $threads = ThreadForum::all()->where('Kategori',  $request->id);
+        $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread_forum',  $request->id);
+        $comments = Comment::all()->where('thread',  $request->id);
 
         $idkategori=$request->id;
 
@@ -112,9 +112,9 @@ dd($data);
         $data->isi = $request->isi;
         $data->save();
 
-        $threads = ThreadForum::all()->where('Kategori',  $request->id);
+        $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread_forum',  $request->id);
+        $comments = Comment::all()->where('thread',  $request->id);
 
         $idkategori=$request->id;
 
@@ -138,16 +138,17 @@ dd($data);
         ];
         $request->validate($rules, $messages);
         $data = new ThreadForum();
-        $data->Judul = $request->judul;
+        $data->judul = $request->judul;
         $data->isi = $request->isi;
         $data->namamember = Session::get('nama');
 
-        $data->Kategori = $request->id;
+        $data->kategori = $request->id;
         $data->save();
 
-        $threads = ThreadForum::all()->where('Kategori',  $request->id);
+
+        $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread_forum',  $request->id);
+        $comments = Comment::all()->where('thread',  $request->id);
 
         $idkategori=$request->id;
 
@@ -174,18 +175,18 @@ dd($data);
 
         $request->validate($rules, $messages);
         $threadforum = ThreadForum::find($request->id);
-        $idforum=$threadforum->Kategori;
+        $idforum=$threadforum->kategori;
         $data = new Comment();
-        $data->thread_forum = $request->id;
-        $data->member = Session::get('nama');
+        $data->thread = $request->id;
+        $data->namamember = Session::get('nama');
 
         $data->isi = $request->isi;
 
         $data->save();
 
-        $threads = ThreadForum::all()->where('Kategori',  $idforum);
+        $threads = ThreadForum::all()->where('kategori',  $idforum);
         $video = Video::find($idforum);
-        $comments = Comment::all()->where('thread_forum',  $idforum);
+        $comments = Comment::all()->where('thread',  $idforum);
 
         $idkategori=$idforum;
 
@@ -212,22 +213,22 @@ dd($data);
 
         $request->validate($rules, $messages);
         $comment = Comment::find($request->id);
-        $threadforum = ThreadForum::find($comment->thread_forum);
-        $idforum=$threadforum->Kategori;
+        $threadforum = ThreadForum::find($comment->thread);
+        $idforum=$threadforum->kategori;
 
 
 
         $data = new Comment();
-        $data->thread_forum = $idforum;
-        $data->member = Session::get('nama');
+        $data->thread = $idforum;
+        $data->namamember = Session::get('nama');
 
         $data->isi = $request->isi;
 
         $data->save();
 
-        $threads = ThreadForum::all()->where('Kategori',  $idforum);
+        $threads = ThreadForum::all()->where('kategori',  $idforum);
         $video = Video::find($idforum);
-        $comments = Comment::all()->where('thread_forum',  $idforum);
+        $comments = Comment::all()->where('thread',  $idforum);
 
         $idkategori=$idforum;
 
