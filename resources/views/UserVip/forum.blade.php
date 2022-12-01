@@ -30,7 +30,7 @@
                                             <h4>(Edited)</h4>
 
                                         @endif
-                                        <h4>Judul Post : <?= $thread->Judul?></h4>
+                                        <h4>Judul Post : <?= $thread->judul?></h4>
                                         <h4>Isi Post : <?= $thread->isi?></h4>
                                         <h4>Poster : <?= $thread->namamember?></h4>
                                         <input type="text"  name="isi" placeholder="Isi reply" class="form-control">
@@ -153,7 +153,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddpost" >Post</button>
         <br>
         <br>
-        <a href="/userVip/forum"><button type="button">Back To Dashboard</button></a>
+        <a href="/userVip/forum"><button type="button" class="btn btn-danger">Back To Dashboard</button></a>
 
     </form>
 @endsection
