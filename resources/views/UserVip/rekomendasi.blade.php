@@ -34,7 +34,7 @@
                 {
                     "width": 1629,
                     "height": 466,
-                    "symbol": "NASDAQ:AAPL",
+                    "symbol": $("select option:selected").text(),
                     "interval": "D",
                     "timezone": "Etc/UTC",
                     "theme": "light",

@@ -27,7 +27,15 @@
         ],
         datasets: [{
           label: "Data Umur Member",
-          backgroundColor: 'rgb(255, 99, 132)',
+          backgroundColor: ['rgb(255, 99, 132)',
+                            'rgb(210, 20, 111)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgb(30, 196, 255)',
+                            'rgb(2, 166, 24)',
+                            'rgb(252, 51, 11)',
+                            'rgb(252, 11, 204)',
+                            'rgb(0, 255, 77)'],
           borderColor: 'rgb(255, 99, 132)',
           data:  [@foreach ($data as $h)
                     String({{ $h->jumlah }}),
@@ -36,7 +44,7 @@
       };
 
       const config = {
-        type: 'line',
+        type: 'pie',
         data: data,
         options: {
             scales: {
