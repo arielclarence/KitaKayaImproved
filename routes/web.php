@@ -62,7 +62,8 @@ Route::prefix('/admin')->group(function() {
 });
 
 Route::prefix('/cs')->group(function() {
-    Route::get('/chat', [CsController::class, "chat"]);
+    Route::get('/listcs', [CsController::class, "listcs"]);
+    Route::get('/historycs', [CsController::class, "historycs"]);
     Route::get('/forum', [CsController::class, "forum"]);
 });
 
@@ -109,6 +110,8 @@ Route::prefix('/userVip')->group(function() {
 
     Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');
     Route::post('/chat/{id}', [UserVIPController::class, "addchatvip"])->name('addchatvip');
+    Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip');
+    Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip');
 
 
 });

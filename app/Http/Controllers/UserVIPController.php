@@ -239,6 +239,9 @@ class UserVIPController extends Controller
 
 
     }
+
+
+
     public function rekomendasi(){
         $data  = DB::table('rekomendasi')->select('nama', 'keterangan')->get();
 
@@ -258,6 +261,42 @@ class UserVIPController extends Controller
             "services" => $services
 
         ]);
+    }
+
+    public function finishservicevip(Request $request){
+
+
+        $data = Service::find($request->id);
+        $data->status = 1;
+        $data->save();
+        $user = User::all()->where('nama', Session::get('nama'))->first();
+        $services = Service::all()->where('member',  $user->id);
+
+
+        return view('UserVip.cs', [
+            "services" => $services
+
+        ]);
+
+
+    }
+    public function rateservicevip(Request $request){
+
+
+        $data = Service::find($request->id);
+        $data->rate = $request->rate;
+        $data->save();
+
+        $user = User::all()->where('nama', Session::get('nama'))->first();
+        $services = Service::all()->where('member',  $user->id);
+
+
+        return view('UserVip.cs', [
+            "services" => $services
+
+        ]);
+
+
     }
     public function todetailcsvip(Request $request){
         $service = Service::find($request->id);

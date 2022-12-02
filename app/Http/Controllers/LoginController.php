@@ -54,7 +54,7 @@ class LoginController extends Controller
             return view("Admin.home");
         }else if ($request->input("username") == "csKITAKAYA@gmail.com" && $request->input("pass") == "cs"){
             Session::put("idCs", "csKITAKAYA@GMAIL.COM");
-            return redirect('/cs/chat');
+            return redirect('/cs/listcs');
         }
         else{
             return redirect()->back()->with("error", "Gagal Login!");

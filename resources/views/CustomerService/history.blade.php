@@ -1,6 +1,5 @@
-@extends('templatehomevip')
+@extends('templateCs')
 @section('content')
-
 <style>
     #btnkeluar{
         margin-left: 45px;
@@ -98,19 +97,7 @@
             <li class="breadcrumb-item active">Saham</li>
         </ol>
 
-        <form class="form-horizontal" action="{{ route('addpertanyaanvip') }}" method="POST">
-            @csrf
-            <label class="control-label"  for="namamenu">Pertanyaan</label>
-            <br>
-            <br>
-            <div class="controls">
-                <input type="text" class="form-control" name="isi" placeholder="Pertanyaan">
-            </div>
-            <br>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary" name="btnaddser">Add</button>
-            </div>
-        </form>
+
         <br>
 
             <table class="table table-dark table-striped">
@@ -121,44 +108,21 @@
                     <th colspan="2">Chat</th>
                 </thead>
                 @forelse ($services as $service)
+                @if ($service->rate!=0)
                 <tr>
                     <td>{{ $service->id}}</td>
                     <td>{{ $service->judul}}</td>
-                    @if ($service->status==0)
-                        <td>
-                        <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
-                            @csrf
-                            Service not finished
-                            <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
 
-                        </td>
-                        </form>
-                    @elseif ($service->rate!=0)
                     <td>
                         {{$service->rate}}/5
-                        </td>
-                    @else
-
-                    <td>
-                    <form class="form-horizontal" action="{{ route('rateservicevip', $service->id) }}" method="POST">
-                        @csrf
-                        <input type="number" id="rate" name="rate" min="1" max="5">  /5
-                          <button type="submit" class="btn btn-primary" name="btnaddchat" >Submit</button>
-
-                    </form>
                     </td>
-                    @endif
-                    @if ($service->status==0)
 
-                    <td><a href="{{ route('detailcsvip', $service->id) }}" class="btn btn-primary">Chat</a><td>
-
-                    </form>
-                    @else
                     <td>
                         Finished
                     </td>
-                    @endif
                 </tr>
+                @endif
+
             @empty
                 {{-- HANYA TAMPIL JIKA LIST BUKU KOSONG --}}
                 <tr>

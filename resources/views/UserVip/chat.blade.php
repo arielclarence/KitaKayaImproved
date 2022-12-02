@@ -31,4 +31,10 @@
         <br>
         <a href="/userVip/cs"><button type="button" class="btn btn-warning">Back To Dashboard</button></a>
     </form>
+    <br>
+    <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
+        <br>
+    </form>
 @endsection

@@ -127,13 +127,17 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Customer Service Menu</div>
-                        <a class="nav-link" href="{{url('/cs/chat')}}">
+                        <a class="nav-link" href="{{url('/cs/listcs')}}">
                             <div class="sb-nav-link-icon"><i class="far fa-comment-dots"></i></div>
                             Chat
                         </a>
                         <a class="nav-link" href="{{url('/cs/forum')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                             Forum
+                        </a>
+                        <a class="nav-link" href="{{url('/cs/historycs')}}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
+                            History
                         </a>
                     </div>
                 </div>
