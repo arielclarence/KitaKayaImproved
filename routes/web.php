@@ -63,8 +63,21 @@ Route::prefix('/admin')->group(function() {
 
 Route::prefix('/cs')->group(function() {
     Route::get('/listcs', [CsController::class, "listcs"]);
+    Route::get('/cs/{id}', [CsController::class, "todetailcscs"])->name('detailcscs');
+    Route::post('/chat/{id}', [CsController::class, "addchatcs"])->name('addchatcs');
+
     Route::get('/historycs', [CsController::class, "historycs"]);
     Route::get('/forum', [CsController::class, "forum"]);
+    Route::get('/forum/{id}', [CsController::class, "todetailforumcs"])->name('detailforumcs');
+    Route::get('/editpost/{id}', [CsController::class, "toeditpostforumcs"])->name('toeditpostforumcs');
+
+    Route::post('/editpost/{id}', [CsController::class, "editpostforumcs"])->name('editpostforumcs');
+    Route::get('/editreply/{id}', [CsController::class, "toeditreplyforumcs"])->name('toeditreplyforumcs');
+    Route::post('/editreply/{id}', [CsController::class, "editreplyforumcs"])->name('editreplyforumcs');
+
+    Route::post('/forum/{id}', [CsController::class, "addpostforumcs"])->name('addpostforumcs');
+    Route::post('/addreply/{id}', [CsController::class, "addreplyforumcs"])->name('addreplyforumcs');
+    Route::post('/addreplycomment/{id}', [CsController::class, "addreplycommentforumcs"])->name('addreplycommentforumcs');
 });
 
 Route::prefix('/userBiasa')->group(function() {

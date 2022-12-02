@@ -39,12 +39,15 @@
                                         </div>
 
                                     </form>
-                                    <form action="{{ route('toeditpostforumvip', $thread->id) }}" method="GET">
-                                        @csrf
-                                    <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                        <button type="submit" class="btn btn-primary" >Edit</button>
-                                    </div>
-                                    </form>
+                                    @if ($thread->namamember==Session::get('nama'))
+                                        <form action="{{ route('toeditpostforumvip', $thread->id) }}" method="GET">
+                                            @csrf
+                                        <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                            <button type="submit" class="btn btn-primary" >Edit</button>
+                                        </div>
+                                        </form>
+                                    @endif
+
                                     @foreach ($comments as $comment)
                                         @if ($comment->thread==$thread->id)
                                         <form action="{{ route('addreplycommentforumvip', $comment->id) }}" method="POST">
@@ -58,8 +61,7 @@
                                                     $time=date('h:i:s', $lengkap);
                                                 @endphp
                                                 @if ($comment->created_at!=$comment->updated_at)
-                                                <h4>(Edited)</h4>
-
+                                                <h4 style="margin-left: 20px;">(Edited)</h4>
                                                 @endif
                                                 <p style="margin-left: 20px;"><b>{{$comment->namamember}}</b> {{$date}} {{$time}}</p>
                                                 <h4 style="margin-left: 20px;">{{$comment->isi}}</h4>
@@ -70,12 +72,14 @@
                                             </span>
 
                                         </form>
-                                        <form action="{{ route('toeditreplyforumvip', $comment->id) }}" method="GET">
-                                            @csrf
-                                        <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                            <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
-                                        </div>
-                                        </form>
+                                            @if ($thread->namamember==Session::get('nama'))
+                                                <form action="{{ route('toeditreplyforumvip', $comment->id) }}" method="GET">
+                                                    @csrf
+                                                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                    <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
+                                                </div>
+                                                </form>
+                                            @endif
 
                                                 @php
                                                     $cek=1;
@@ -103,10 +107,11 @@
 
                                                             <h4>{{$date}}</h4>
                                                             <h4>{{$time}}</h4>
-                                                            @if ($reply->created_at!=$reply->updated_at)
-                                                            <h4>(Edited)</h4>
 
+                                                            @if ($comment->created_at!=$comment->updated_at)
+                                                            <h4 style="margin-left: 20px;">(Edited)</h4>
                                                             @endif
+
                                                             <h4 style="margin-left: 20px;">Pereply : {{$commentreply->namamember}}</h4>
                                                             <h4 style="margin-left: 20px;">Isi : {{$commentreply->isi}}</h4>
                                                             <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 60px;">

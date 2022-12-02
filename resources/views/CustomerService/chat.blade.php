@@ -1,4 +1,4 @@
-@extends('templatehomevip')
+@extends('templateCs')
 @section('content')
 <style>
     body{
@@ -8,7 +8,7 @@
         background-image: linear-gradient(160deg, #b1bfd8 0%, #6782b4 74%);
         /* background: linear-gradient(150deg, #9600FF 10%,#AEBAF8 50%); */
     }
-    #punyaeuser{
+    #punyaecs{
         text-align: right;
     }
     #asing{
@@ -28,10 +28,10 @@
             @forelse ($chats as $chat)
                 @if ($chat->pengirim==1)
                     <input id="punyaecs" class="form-control" type="text" value=" Customer Service : {{$chat->isi}}" aria-label="readonly input example" readonly>
-                    <br>
+
                 @else
                     <input id="punyaeuser" class="form-control" type="text" value="Me :{{$chat->isi}}   " aria-label="readonly input example" readonly>
-                    <br>
+
                 @endif
                 @empty
                 <tr>
@@ -40,7 +40,7 @@
             @endforelse
         </tbody>
     </table>
-    <form class="form-horizontal" action="{{ route('addchatvip', $service->id) }}" method="POST">
+    <form class="form-horizontal" action="{{ route('addchatcs', $service->id) }}" method="POST">
         @csrf
         <h1>Chat</h1>
         <input type="text" name="isichat" placeholder="Chat Yang ingin disampaikan" class="form-control">
@@ -48,12 +48,8 @@
         <button type="submit" class="btn btn-primary" name="btnaddchat" >Chat</button>
         <br>
         <br>
-        <a href="/userVip/cs"><button type="button" class="btn btn-warning">Back To Dashboard</button></a>
+        <a href="/cs/listcs"><button type="button" class="btn btn-warning">Back To Dashboard</button></a>
     </form>
     <br>
-    <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
-        @csrf
-        <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
-        <br>
-    </form>
+
 @endsection

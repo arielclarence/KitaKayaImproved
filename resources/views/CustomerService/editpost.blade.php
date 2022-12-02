@@ -1,9 +1,9 @@
-@extends('templatehomevip')
+@extends('templateCs')
 @section('content')
 
 
 
-    <form class="form-horizontal" action="{{ route('editpostforumvip', $thread->id) }}" method="POST">
+    <form class="form-horizontal" action="{{ route('editpostforumcs', $thread->id) }}" method="POST">
         @csrf
         <h1>Post</h1>
         <input type="text" name="judul" placeholder="Post Yang ingin disampaikan" value="{{$thread->judul}}" class="form-control">
@@ -14,7 +14,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddpost" >Edit Post</button>
         <br>
         <br>
-        <a href="/userVip/forum/{{$thread->kategori}}"><button type="button">Cancel Edit</button></a>
+        <a href="/cs/forum/{{$thread->kategori}}"><button type="button">Cancel Edit</button></a>
 
     </form>
 @endsection

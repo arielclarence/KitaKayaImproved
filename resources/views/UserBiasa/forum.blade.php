@@ -39,12 +39,16 @@
                                         </div>
 
                                     </form>
+                                    @if ($thread->namamember==Session::get('nama'))
+
                                     <form action="{{ route('toeditpostforumbiasa', $thread->id) }}" method="GET">
                                         @csrf
                                     <div class="action d-flex justify-content-between mt-2 align-items-center">
                                         <button type="submit" class="btn btn-primary" >Edit</button>
                                     </div>
                                     </form>
+                                @endif
+
                                     @foreach ($comments as $comment)
                                         @if ($comment->thread==$thread->id)
                                         <form action="{{ route('addreplycommentforumbiasa', $comment->id) }}" method="POST">
@@ -58,7 +62,7 @@
                                                     $time=date('h:i:s', $lengkap);
                                                 @endphp
                                                 @if ($comment->created_at!=$comment->updated_at)
-                                                <h4>(Edited)</h4>
+                                                <h4 style="margin-left: 20px;">(Edited)</h4>
 
                                                 @endif
                                                 <p style="margin-left: 20px;"><b>{{$comment->namamember}}</b> {{$date}} {{$time}}</p>
@@ -70,12 +74,16 @@
                                             </span>
 
                                         </form>
+                                        @if ($comment->namamember==Session::get('nama'))
+
                                         <form action="{{ route('toeditreplyforumbiasa', $comment->id) }}" method="GET">
                                             @csrf
                                         <div class="action d-flex justify-content-between mt-2 align-items-center">
                                             <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
                                         </div>
                                         </form>
+                                        @endif
+
 
                                                 @php
                                                     $cek=1;

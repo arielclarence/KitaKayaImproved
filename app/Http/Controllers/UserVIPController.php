@@ -39,7 +39,7 @@ class UserVIPController extends Controller
 
         $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread',  $request->id);
+        $comments = Comment::all();
         // dd($comments);
 
         $idkategori=$request->id;
@@ -81,13 +81,17 @@ class UserVIPController extends Controller
 
         ];
         $request->validate($rules, $messages);
+
+        $threadforum = ThreadForum::find($request->id);
+        $idforum=$threadforum->kategori;
+
         $data = ThreadForum::find($request->id);
         $data->judul = $request->judul;
         $data->isi = $request->isi;
         $data->save();
         $threads = ThreadForum::all()->where('kategori',  $request->id);
-        $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread',  $request->id);
+        $video = Video::find($idforum);
+        $comments = Comment::all();
 
         $idkategori=$request->id;
 
@@ -115,7 +119,7 @@ class UserVIPController extends Controller
 
         $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread',  $request->id);
+        $comments = Comment::all();
 
         $idkategori=$request->id;
 
@@ -149,7 +153,7 @@ class UserVIPController extends Controller
 
         $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
-        $comments = Comment::all()->where('thread',  $request->id);
+        $comments = Comment::all();
 
         $idkategori=$request->id;
 
@@ -226,7 +230,7 @@ class UserVIPController extends Controller
 
         $threads = ThreadForum::all()->where('kategori',  $idforum);
         $video = Video::find($idforum);
-        $comments = Comment::all()->where('thread',  $idforum);
+        $comments = Comment::all();
 
         $idkategori=$idforum;
 

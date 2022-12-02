@@ -1,6 +1,25 @@
 @extends('templateHome')
 @section('content')
+<style>
+    body{
+        width: 100%;
+        height: 100vh;
+        background-color: #b1bfd8;
+        background-image: linear-gradient(160deg, #b1bfd8 0%, #6782b4 74%);
+        /* background: linear-gradient(150deg, #9600FF 10%,#AEBAF8 50%); */
+    }
+    #punyaecs{
+        text-align: right;
+    }
+    #asing{
+        border: 4px;
+    }
+    .coba{
+        border: 4px solid black;
+        border-radius: 10px;
+    }
 
+</style>
 <h1 class="mt-4">{{ $service->judul}}</h1>
     <table class="table table-dark table-striped">
         <thead>
@@ -9,10 +28,8 @@
             @forelse ($chats as $chat)
                 @if ($chat->pengirim==1)
                 <input id="punyaecs" class="form-control" type="text" value=" Customer Service : {{$chat->isi}}" aria-label="readonly input example" readonly>
-                <br>
                 @else
                 <input id="punyaeuser" class="form-control" type="text" value="Me :{{$chat->isi}}   " aria-label="readonly input example" readonly>
-                <br>
             @endif
             @empty
                 <tr>
@@ -29,6 +46,12 @@
         <button type="submit" class="btn btn-primary" name="btnaddchat" >Chat</button>
         <br>
         <br>
+
         <a href="/userBiasa/cs"><button type="button" class="btn btn-warning">Back To Dashboard</button></a>
+    </form>
+    <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
+        <br>
     </form>
 @endsection

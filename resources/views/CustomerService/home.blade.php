@@ -97,7 +97,7 @@
             <li class="breadcrumb-item active">Saham</li>
         </ol>
 
-        
+
         <br>
 
             <table class="table table-dark table-striped">
@@ -117,11 +117,7 @@
                     <td>{{ $service->judul}}</td>
                     @if ($service->status==0)
                         <td>
-                        <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
-                            @csrf
                             Service not finished
-                            <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
-
                         </td>
                         </form>
                     @elseif ($service->rate!=0)

@@ -1,9 +1,9 @@
-@extends('templatehomevip')
+@extends('templateHome')
 @section('content')
 
 
 
-    <form class="form-horizontal" action="{{ route('editpostforumvip', $thread->id) }}" method="POST">
+    <form class="form-horizontal" action="{{ route('editpostforumbiasa', $thread->id) }}" method="POST">
         @csrf
         <h1>Post</h1>
         <input type="text" name="judul" placeholder="Post Yang ingin disampaikan" value="{{$thread->judul}}" class="form-control">
