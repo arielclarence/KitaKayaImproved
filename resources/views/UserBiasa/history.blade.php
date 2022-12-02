@@ -25,6 +25,16 @@
                         <th>Status</th>
                     </thead>
                     <tbody>
+                        @forelse ($listHistory as $history)
+                        <tr>
+                            <td>{{ $history->id_member }}</td>
+                            <td>{{ $history->bukti }}</td>
+                            <td>{{ $history->created_at }}</td>
+                            <td>{{ $history->status }}</td>
+                        </tr>
+                        @empty
+
+                        @endforelse
                     </tbody>
                 </table>
             </form>
