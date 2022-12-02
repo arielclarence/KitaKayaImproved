@@ -57,7 +57,6 @@ class AdminController extends Controller
             return redirect()->back();
         }else{
             $hasil = DB::table('rekomendasi')->where('nama', "LIKE", "%".$request->input("filterKode")."%")->get();
-            Alert::success('Success', 'Berhasil Filter!');
             return view("Admin.addchart", ["dataSaham" => $hasil]);
         }
     }

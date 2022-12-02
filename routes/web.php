@@ -113,6 +113,7 @@ Route::prefix('/userVip')->group(function() {
     Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip');
     Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip');
 
+    // Route::post('/video', [UserVIPController::class, "changepass"]);
 
 });
 

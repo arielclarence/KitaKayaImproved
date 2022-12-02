@@ -13,6 +13,7 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserVIPController extends Controller
 {
@@ -246,6 +247,16 @@ class UserVIPController extends Controller
         $data  = DB::table('rekomendasi')->select('nama', 'keterangan')->get();
 
         return view('UserVip.rekomendasi', ["listSaham" => $data]);
+    }
+
+    public function changePass(Request $request){
+        $passlama = $request->input('passlama');
+        $passbaru = $request->input('passbaru');
+        $conpass = $request->input('conpass');
+
+        if ($passlama == "" || $passbaru == "" || $conpass == "") {
+            Alert::error('Error', 'Tidak boleh ada yang kosong!');
+        }
     }
 
     public function history(){
