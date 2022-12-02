@@ -249,9 +249,24 @@
           <p>ISTTS NI BOSS! Senggol Dong!</p>
         </div>
 
-        <div class="row">
+        <div class="row" style="margin: auto;">
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="col-xl-2 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200" style="margin: auto;">
+                <div class="member">
+                  <div class="pic"><img src="assets/img/team/team-3.jpeg" class="img-fluid" alt=""></div>
+                  <div class="member-info">
+                    <h4>Ariel Clarence</h4>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          <div class="col-xl-2 col-lg-4 col-md-6" data-aos="fade-up" style="margin: auto;">
             <div class="member">
               <div class="pic"><img src="assets/img/team/team-1.png" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -266,7 +281,7 @@
             </div>
           </div>
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-2 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100" style="margin: auto;">
             <div class="member">
               <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -281,11 +296,11 @@
             </div>
           </div>
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-xl-2 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200" style="margin: auto;">
             <div class="member">
-              <div class="pic"><img src="assets/img/team/team-3.jpeg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="assets/img/team/team-5.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Ariel Clarence</h4>
+                <h4>Harmanto Chiari</h4>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -296,7 +311,7 @@
             </div>
           </div>
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-xl-2 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300" style="margin: auto;">
             <div class="member">
               <div class="pic"><img src="{{asset('assets/img/team/team-4.jpeg')}}" class="img-fluid" alt=""></div>
               <div class="member-info">
