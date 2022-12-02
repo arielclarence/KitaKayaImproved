@@ -110,6 +110,7 @@ Route::prefix('/userVip')->group(function() {
     Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');
     Route::post('/chat/{id}', [UserVIPController::class, "addchatvip"])->name('addchatvip');
 
+    // Route::post('/video', [UserVIPController::class, "changepass"]);
 
 });
 
