@@ -26,12 +26,43 @@
         </thead>
         <tbody>
             @forelse ($chats as $chat)
-                @if ($chat->pengirim==1)
-                    <input id="punyaecs" class="form-control" type="text" value=" Customer Service : {{$chat->isi}}" aria-label="readonly input example" readonly>
-                    <br>
+                @if ($chat->unsend==0)
+
+
+                    @if ($chat->pengirim==1)
+                        <input id="punyaecs" class="form-control" type="text" value=" Customer Service : {{$chat->isi}}" aria-label="readonly input example" readonly>
+                        <br>
+                    @else
+
+                        <form class="form-horizontal" action="{{ route('unsendchatvip', $chat->id) }}" method="POST">
+                        @csrf
+
+                            <div class="form-control" id="punyaeuser">
+                                <button name="btnaddchat" type="submit" onclick="return confirm('Are you sure you want to unsend this massage?')" >Unsend</button>
+                        <input  type="text" value="Me :{{$chat->isi}} "  aria-label="readonly input example" readonly>
+                        </div>
+                    </form>
+                        <br>
+                    @endif
+
+
                 @else
-                    <input id="punyaeuser" class="form-control" type="text" value="Me :{{$chat->isi}}   " aria-label="readonly input example" readonly>
-                    <br>
+
+                    @if ($chat->pengirim==1)
+                        <input id="punyaecs" class="form-control" type="text" value=" Customer Service : This Massage has been deleted" aria-label="readonly input example" readonly>
+                        <br>
+                    @else
+
+
+
+
+
+                        <input class="form-control" id="punyaeuser"  type="text" value="Me : This Massage has been deleted "  aria-label="readonly input example" readonly>
+
+                    </form>
+                        <br>
+                    @endif
+
                 @endif
                 @empty
                 <tr>
@@ -53,7 +84,7 @@
     <br>
     <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
         @csrf
-        <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
+        <button type="submit" class="btn btn-danger" name="btnaddchat" onclick="return confirm('Are you sure you want to finish this chat?')" >Finish</button>
         <br>
     </form>
 @endsection

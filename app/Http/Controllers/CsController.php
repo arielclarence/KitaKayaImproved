@@ -279,5 +279,18 @@ class CsController extends Controller
 
 
     }
+    public function unsendchatcs(Request $request){
+
+        $data = Chat::find($request->id);
+        $data->unsend =1;
+        $data->save();
+        $service = Service::find($data->service);
+
+        $chats = Chat::all()->where('service',  $data->service);
+        return view('CustomerService.chat', [
+            "service" => $service,
+            "chats" => $chats
+        ]);
+    }
 
 }

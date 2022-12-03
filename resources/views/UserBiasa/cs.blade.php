@@ -111,25 +111,57 @@
         </form>
         <br>
         <table class="table table-dark table-striped">
-                <thead>
-                    <th>ID</th>
-                    <th>Judul Pertanyaan</th>
-                    <th>Rate</th>
-                    <th colspan="2">Chat</th>
-                </thead>
-                @forelse ($services as $service)
-                    <tr>
-                        <td>{{ $service->id}}</td>
-                        <td>{{ $service->judul}}</td>
-                        <td>{{ $service->rate}}</td>
-                        <td><a href="{{ route('detailcs', $service->id) }}" class="btn btn-danger">Chat</a><td>
-                    </tr>
-                @empty
-                    {{-- HANYA TAMPIL JIKA LIST BUKU KOSONG --}}
-                    <tr>
-                        <td colspan="7" style="text-align: center;">Tidak ada item saat ini!</td>
-                    </tr>
-            @endforelse
+            <thead>
+                <th>ID</th>
+                <th>Judul Pertanyaan</th>
+                <th>Rate</th>
+                <th colspan="2">Chat</th>
+            </thead>
+            @forelse ($services as $service)
+            <tr>
+                <td>{{ $service->id}}</td>
+                <td>{{ $service->judul}}</td>
+                @if ($service->status==0)
+                    <td>
+                    <form class="form-horizontal" action="{{ route('finishservicebiasa', $service->id) }}" method="POST">
+                        @csrf
+                        Service not finished
+                        <button type="submit" class="btn btn-danger" name="btnaddchat" onclick="return confirm('Are you sure you want to finish this chat?')">Finish</button>
+
+                    </td>
+                    </form>
+                @elseif ($service->rate!=0)
+                <td>
+                    {{$service->rate}}/5
+                    </td>
+                @else
+
+                <td>
+                <form class="form-horizontal" action="{{ route('rateservicebiasa', $service->id) }}" method="POST">
+                    @csrf
+                    <input type="number" id="rate" name="rate" min="1" max="5">  /5
+                      <button type="submit" class="btn btn-primary" name="btnaddchat" onclick="return confirm('Are you sure with your score?')">Submit</button>
+
+                </form>
+                </td>
+                @endif
+                @if ($service->status==0)
+
+                <td><a href="{{ route('detailcs', $service->id) }}" class="btn btn-primary">Chat</a><td>
+
+                </form>
+                @else
+                <td>
+                    Finished
+                </td>
+                @endif
+            </tr>
+        @empty
+            {{-- HANYA TAMPIL JIKA LIST BUKU KOSONG --}}
+            <tr>
+                <td colspan="7" style="text-align: center;">Tidak ada pertanyaan saat ini!</td>
+            </tr>
+        @endforelse
         </table>
     </div>
 </main>

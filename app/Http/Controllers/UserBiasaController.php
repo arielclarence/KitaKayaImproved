@@ -33,6 +33,7 @@ class UserBiasaController extends Controller
             "chats" => $chats
         ]);
     }
+
     public function addpertanyaan(Request $request){
         $rules = [
             "isi" => "required"
@@ -313,6 +314,75 @@ class UserBiasaController extends Controller
         return view('UserBiasa.cs', [
             "services" => $services
 
+        ]);
+    }
+
+    public function rateservicebiasa(Request $request){
+        if ($request->rate==null) {
+            $user = User::all()->where('nama', Session::get('nama'))->first();
+            $services = Service::all()->where('member',  $user->id);
+
+
+            return view('UserBiasa.cs', [
+                "services" => $services
+
+            ]);
+        }
+        else {
+            $rules = [
+                "rate" => "required"
+
+            ];
+            $messages = [
+                "required" => "attribute kosong",
+
+            ];
+            $request->validate($rules, $messages);
+            $data = Service::find($request->id);
+            $data->rate = $request->rate;
+            $data->save();
+
+            $user = User::all()->where('nama', Session::get('nama'))->first();
+            $services = Service::all()->where('member',  $user->id);
+
+
+            return view('UserBiasa.cs', [
+                "services" => $services
+
+            ]);
+        }
+
+
+
+    }
+    public function finishservicebiasa(Request $request){
+
+
+        $data = Service::find($request->id);
+        $data->status = 1;
+        $data->save();
+        $user = User::all()->where('nama', Session::get('nama'))->first();
+        $services = Service::all()->where('member',  $user->id);
+
+
+        return view('UserBiasa.cs', [
+            "services" => $services
+
+        ]);
+
+
+    }
+    public function unsendchatbiasa(Request $request){
+
+        $data = Chat::find($request->id);
+        $data->unsend =1;
+        $data->save();
+        $service = Service::find($data->service);
+
+        $chats = Chat::all()->where('service',  $data->service);
+        return view('UserBiasa.chat', [
+            "service" => $service,
+            "chats" => $chats
         ]);
     }
 }
