@@ -18,7 +18,6 @@
         border: 4px solid black;
         border-radius: 10px;
     }
-
 </style>
 <h1 class="mt-4">{{ $service->judul}}</h1>
     <table class="table table-dark table-striped">
