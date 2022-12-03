@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserBiasaController extends Controller
 {
-    //
     public function view(){
         $kategori = DB::select("SELECT * FROM KATEGORI_VID LIMIT 3");
 
