@@ -132,7 +132,7 @@
                 @endif
                 @if ($service->status==0)
 
-                    <td><a href="{{ route('detailcsvip', $service->id) }}" class="btn btn-primary">Chat</a><td>
+                    <td><a href="{{ route('todetailcscs', $service->id) }}" class="btn btn-primary">Chat</a><td>
 
                     </form>
                     @else

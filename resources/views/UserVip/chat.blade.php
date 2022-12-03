@@ -47,9 +47,9 @@
 
 
                 @else
-
+                    {{-- Pengirim : 1 VIP, 0 User --}}
                     @if ($chat->pengirim==1)
-                        <input id="punyaecs" class="form-control" type="text" value=" Customer Service : This Massage has been deleted" aria-label="readonly input example" readonly>
+                        <input id="punyaecs" class="form-control" type="text" value=" Customer Service : This Massage has been unsent" aria-label="readonly input example" readonly>
                         <br>
                     @else
 
@@ -57,7 +57,7 @@
 
 
 
-                        <input class="form-control" id="punyaeuser"  type="text" value="Me : This Massage has been deleted "  aria-label="readonly input example" readonly>
+                        <input class="form-control" id="punyaeuser"  type="text" value="Me : This Massage has been unsent"  aria-label="readonly input example" readonly>
 
                     </form>
                         <br>

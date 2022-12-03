@@ -61,7 +61,7 @@ class UserBiasaController extends Controller
 
         ]);
     }
-    public function addchatvip(Request $request){
+    public function addchat(Request $request){
         $service = Service::find($request->id);
         $data = new Chat();
         $data->service =$request->id;

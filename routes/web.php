@@ -71,8 +71,9 @@ Route::prefix('/admin')->group(function() {
 
 Route::prefix('/cs')->group(function() {
     Route::get('/listcs', [CsController::class, "listcs"])->name('CsHome')->middleware([CsMiddleware::class]);
-    Route::get('/cs/{id}', [CsController::class, "todetailcscs"])->name('detailcscs')->middleware([CsMiddleware::class]);
+    Route::get('/cs/{id}', [CsController::class, "todetailcscs"])->name('todetailcscs')->middleware([CsMiddleware::class]);
     Route::post('/chat/{id}', [CsController::class, "addchatcs"])->name('addchatcs')->middleware([CsMiddleware::class]);
+    Route::post('/unsend/{id}', [CsController::class, "unsendchatcs"])->name('unsendchatcs')->middleware([CsMiddleware::class]);
 
     Route::get('/historycs', [CsController::class, "historycs"])->middleware([CsMiddleware::class]);
     Route::get('/forum', [CsController::class, "forum"])->middleware([CsMiddleware::class]);

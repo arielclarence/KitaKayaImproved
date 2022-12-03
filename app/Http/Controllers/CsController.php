@@ -35,7 +35,7 @@ class CsController extends Controller
 
     public function todetailcscs(Request $request){
         $service = Service::find($request->id);
-
+        $user = User::find($service->member);
         $chats = Chat::all()->where('service',  $service->id);
         return view('CustomerService.chat', [
             "service" => $service,

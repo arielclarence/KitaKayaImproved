@@ -25,18 +25,49 @@
         </thead>
         <tbody>
             @forelse ($chats as $chat)
-                @if ($chat->pengirim==1)
-                    <input id="punyaecs" class="form-control" type="text" value=" Customer Service : {{$chat->isi}}" aria-label="readonly input example" readonly>
+                @if ($chat->unsend==0)
 
+
+                @if ($chat->pengirim==0)
+                    <input id="punyaecs" class="form-control" type="text" value="User : {{$chat->isi}}" aria-label="readonly input example" readonly>
+                    <br>
                 @else
-                    <input id="punyaeuser" class="form-control" type="text" value="Me :{{$chat->isi}}   " aria-label="readonly input example" readonly>
 
+                    <form class="form-horizontal" action="{{ route('unsendchatcs', $chat->id) }}" method="POST">
+                    @csrf
+
+                        <div class="form-control" id="punyaeuser">
+                            <button name="btnaddchat" type="submit" onclick="return confirm('Are you sure you want to unsend this massage?')" >Unsend</button>
+                    <input  type="text" value="Me :{{$chat->isi}} "  aria-label="readonly input example" readonly>
+                    </div>
+                </form>
+                    <br>
                 @endif
-                @empty
-                <tr>
-                    <td colspan="7" style="text-align: center;">Tidak ada Chat saat ini!</td>
-                </tr>
-            @endforelse
+
+
+            @else
+                {{-- Pengirim : 1 VIP, 0 User --}}
+                @if ($chat->pengirim==0)
+                    <input id="punyaecs" class="form-control" type="text" value=" User : This Massage has been unsent" aria-label="readonly input example" readonly>
+                    <br>
+                @else
+
+
+
+
+
+                    <input class="form-control" id="punyaeuser"  type="text" value="Me : This Massage has been unsent"  aria-label="readonly input example" readonly>
+
+                </form>
+                    <br>
+                @endif
+
+            @endif
+            @empty
+            <tr>
+                <td colspan="7" style="text-align: center;">Tidak ada Chat saat ini!</td>
+            </tr>
+        @endforelse
         </tbody>
     </table>
     <form class="form-horizontal" action="{{ route('addchatcs', $service->id) }}" method="POST">
