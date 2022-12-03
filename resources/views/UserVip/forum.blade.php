@@ -65,10 +65,7 @@
                                                 @endif
                                                 <p style="margin-left: 20px;"><b>{{$comment->namamember}}</b> {{$date}} {{$time}}</p>
                                                 <h4 style="margin-left: 20px;">{{$comment->isi}}</h4>
-                                                <input type="text" name="isi" placeholder="Isi reply" class="form-control" style="margin-left: 20px;">
-                                                <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                                    <button style="margin-left: 20px;" class="btn btn-primary" name="replycomment[]">Reply</button>
-                                                </div>
+
                                             </span>
 
                                         </form>
@@ -81,49 +78,7 @@
                                                 </form>
                                             @endif
 
-                                                @php
-                                                    $cek=1;
-                                                    $idcomment=$comment->id;
-                                                @endphp
-                                                @while ($cek==0)
-                                                    @php
-                                                        $cek=0;
-                                                    @endphp
-                                                    @foreach ($comments as $reply)
-
-                                                    @if ($thread->id==$reply->thread&&$reply->reply==$idcomment)
-                                                        @php
-                                                            $cek=$cek+1;
-                                                        @endphp
-                                                    <form action="{{ route('addreplycommentforumvip', $reply->id) }}" method="POST">
-                                                        <span>
-                                                            <br>
-                                                            @php
-                                                            $input = $reply->created_at;
-                                                            $lengkap = strtotime($input);
-                                                            $date=date('d-M-Y', $lengkap);
-                                                            $time=date('h:i:s', $lengkap);
-                                                            @endphp
-
-                                                            <h4>{{$date}}</h4>
-                                                            <h4>{{$time}}</h4>
-
-                                                            @if ($comment->created_at!=$comment->updated_at)
-                                                            <h4 style="margin-left: 20px;">(Edited)</h4>
-                                                            @endif
-
-                                                            <h4 style="margin-left: 20px;">Pereply : {{$commentreply->namamember}}</h4>
-                                                            <h4 style="margin-left: 20px;">Isi : {{$commentreply->isi}}</h4>
-                                                            <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 60px;">
-                                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                                                <button class="btn btn-primary" name="replycomment" style="margin-left: 60px;">Reply</button>
-                                                            </div>
-                                                            </span>
-                                                        </form>
-                                                    @endif
-                                                    @endforeach
-                                                @endwhile
-
+                                                
 
 
 

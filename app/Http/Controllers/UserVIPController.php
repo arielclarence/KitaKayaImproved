@@ -296,20 +296,40 @@ class UserVIPController extends Controller
 
     }
     public function rateservicevip(Request $request){
+        if ($request->rate==null) {
+            $user = User::all()->where('nama', Session::get('nama'))->first();
+            $services = Service::all()->where('member',  $user->id);
 
 
-        $data = Service::find($request->id);
-        $data->rate = $request->rate;
-        $data->save();
+            return view('UserVip.cs', [
+                "services" => $services
 
-        $user = User::all()->where('nama', Session::get('nama'))->first();
-        $services = Service::all()->where('member',  $user->id);
+            ]);
+        }
+        else {
+            $rules = [
+                "rate" => "required"
+
+            ];
+            $messages = [
+                "required" => "attribute kosong",
+
+            ];
+            $request->validate($rules, $messages);
+            $data = Service::find($request->id);
+            $data->rate = $request->rate;
+            $data->save();
+
+            $user = User::all()->where('nama', Session::get('nama'))->first();
+            $services = Service::all()->where('member',  $user->id);
 
 
-        return view('UserVip.cs', [
-            "services" => $services
+            return view('UserVip.cs', [
+                "services" => $services
 
-        ]);
+            ]);
+        }
+
 
 
     }
@@ -361,6 +381,19 @@ class UserVIPController extends Controller
         $data->save();
 
         $chats = Chat::all()->where('service',  $service->id);
+        return view('UserVip.chat', [
+            "service" => $service,
+            "chats" => $chats
+        ]);
+    }
+    public function unsendchatvip(Request $request){
+
+        $data = Chat::find($request->id);
+        $data->unsend =1;
+        $data->save();
+        $service = Service::find($data->service);
+
+        $chats = Chat::all()->where('service',  $data->service);
         return view('UserVip.chat', [
             "service" => $service,
             "chats" => $chats

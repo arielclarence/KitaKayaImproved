@@ -129,7 +129,7 @@
                         <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
                             @csrf
                             Service not finished
-                            <button type="submit" class="btn btn-danger" name="btnaddchat" >Finish</button>
+                            <button type="submit" class="btn btn-danger" name="btnaddchat" onclick="return confirm('Are you sure you want to finish this chat?')">Finish</button>
 
                         </td>
                         </form>
@@ -143,7 +143,7 @@
                     <form class="form-horizontal" action="{{ route('rateservicevip', $service->id) }}" method="POST">
                         @csrf
                         <input type="number" id="rate" name="rate" min="1" max="5">  /5
-                          <button type="submit" class="btn btn-primary" name="btnaddchat" >Submit</button>
+                          <button type="submit" class="btn btn-primary" name="btnaddchat" onclick="return confirm('Are you sure with your score?')">Submit</button>
 
                     </form>
                     </td>

@@ -102,6 +102,10 @@ Route::prefix('/userBiasa')->group(function() {
     Route::get('/cs', [UserBiasaController::class, "cs"]);
     Route::post('/pertanyaan', [UserBiasaController::class, "addpertanyaan"])->name('addpertanyaan');
 
+    Route::post('/finishchat/{id}', [UserBiasaController::class, "finishservicebiasa"])->name('finishservicebiasa');
+    Route::post('/rate/{id}', [UserBiasaController::class, "rateservicebiasa"])->name('rateservicebiasa');
+    Route::post('/unsend/{id}', [UserBiasaController::class, "unsendchatbiasa"])->name('unsendchatbiasa');
+
     Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs');
     Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat');
 
@@ -127,6 +131,7 @@ Route::prefix('/userVip')->group(function() {
 
     Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');
     Route::post('/chat/{id}', [UserVIPController::class, "addchatvip"])->name('addchatvip');
+    Route::post('/unsend/{id}', [UserVIPController::class, "unsendchatvip"])->name('unsendchatvip');
     Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip');
     Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip');
 

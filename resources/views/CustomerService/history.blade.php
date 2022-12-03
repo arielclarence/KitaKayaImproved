@@ -105,7 +105,7 @@
                     <th>ID</th>
                     <th>Judul Pertanyaan</th>
                     <th>Rate</th>
-                    <th colspan="2">Chat</th>
+                    <th colspan="2">Status</th>
                 </thead>
                 @forelse ($services as $service)
                 @if ($service->rate!=0)

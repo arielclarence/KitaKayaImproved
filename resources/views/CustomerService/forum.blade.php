@@ -6,9 +6,7 @@
         <thead>
         </thead>
         <tbody>
-
-
-                    @forelse ($threads as $thread)
+         @forelse ($threads as $thread)
                     <tr>
                         <div class="card p-3">
                             <div class="d-flex justify-content-between align-items-center">

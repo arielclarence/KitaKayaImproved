@@ -67,10 +67,7 @@
                                                 @endif
                                                 <p style="margin-left: 20px;"><b>{{$comment->namamember}}</b> {{$date}} {{$time}}</p>
                                                 <h4 style="margin-left: 20px;">{{$comment->isi}}</h4>
-                                                <input type="text" name="isi" placeholder="Isi reply" class="form-control" style="margin-left: 20px;">
-                                                <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                                    <button style="margin-left: 20px;" class="btn btn-primary" name="replycomment[]">Reply</button>
-                                                </div>
+                    
                                             </span>
 
                                         </form>
