@@ -37,6 +37,7 @@ class LoginController extends Controller
                 //     return redirect()->back();
                 // }
                 Session::put("nama", $user->nama);
+                Session::put("pass", $user->password);
                 return redirect('/userBiasa/video');
             }else if ($user->role == "1") {
                 // if ($user->email_verified_at == null) {
@@ -45,6 +46,7 @@ class LoginController extends Controller
                 //     return redirect()->back();
                 // }
                 Session::put("nama", $user->nama);
+                Session::put("pass", $user->password);
                 return redirect('/userVip/video');
             }
 
@@ -76,24 +78,24 @@ class LoginController extends Controller
             "cb" => ["required"]
         ]);
 
-        // $result = User::create([
-        //     "email" => $in["email"],
-        //     "password" => password_hash($in["pass"], PASSWORD_DEFAULT),
-        //     "nama" => $in["nama"],
-        //     "umur" => $in["umur"],
-        //     "role" => 0,
-        //     "status" => 1
-        // ]);
+        $result = User::create([
+            "email" => $in["email"],
+            "password" => password_hash($in["pass"], PASSWORD_DEFAULT),
+            "nama" => $in["nama"],
+            "umur" => $in["umur"],
+            "role" => 0,
+            "status" => 1
+        ]);
 
-        $result = new User();
-        $result->nama = $request->nama;
-        $result->email = $request->email;
-        $result->password = $request->pass;
-        $result->umur = $request->umur;
-        $result->role = 1;
-        $result->status = 1;
-        $result->exp = 0;
-        $result->save();
+        // $result = new User();
+        // $result->nama = $request->nama;
+        // $result->email = $request->email;
+        // $result->password = $request->pass;
+        // $result->umur = $request->umur;
+        // $result->role = 1;
+        // $result->status = 1;
+        // $result->exp = 0;
+        // $result->save();
 
         event(new Registered($result));
 

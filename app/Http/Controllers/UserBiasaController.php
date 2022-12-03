@@ -13,6 +13,8 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 
 class UserBiasaController extends Controller
 {
@@ -22,6 +24,38 @@ class UserBiasaController extends Controller
         return view('UserBiasa.home', [
             'kategori' => $kategori
         ]);
+    }
+
+    public function changePass(Request $request){
+        $passlama = $request->input('passlama');
+        $passbaru = $request->input('passbaru');
+        $conpass = $request->input('conpass');
+
+        $oldpass = Session::get("pass", "Saya");
+
+        if ($passlama == "" || $passbaru == "" || $conpass == "") {
+            Alert::error('Error', 'Tidak boleh ada yang kosong!');
+            return redirect()->back();
+        }
+        else if (!Hash::check($passlama, $oldpass)){
+            Alert::error('Error', 'Password Lama Salah');
+            return redirect()->back();
+        }
+        else if ($passbaru != $conpass){
+            Alert::error('Error', 'Password baru tidak sama dengan Confirm Password!');
+            return redirect()->back();
+        } else{
+            $result = DB::update('update user set password = ? where password = ?', [password_hash($passbaru, PASSWORD_DEFAULT) , $oldpass]);
+
+            if ($result) {
+                Alert::success('Success', 'Berhasil Update Password!');
+                return redirect()->back();
+            }
+            else{
+                Alert::error('Error', 'Gagal Update Password!');
+                return redirect()->back();
+            }
+        }
     }
 
     public function todetailcs(Request $request){

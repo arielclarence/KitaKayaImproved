@@ -109,6 +109,8 @@ Route::prefix('/userBiasa')->group(function() {
     Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs');
     Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat');
 
+    Route::post('/video', [UserBiasaController::class, "changepass"]);
+
 });
 
 Route::prefix('/userVip')->group(function() {
@@ -135,7 +137,7 @@ Route::prefix('/userVip')->group(function() {
     Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip');
     Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip');
 
-    // Route::post('/video', [UserVIPController::class, "changepass"]);
+    Route::post('/video', [UserVIPController::class, "changepass"]);
 
 });
 
