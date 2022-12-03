@@ -293,4 +293,9 @@ class CsController extends Controller
         ]);
     }
 
+    public function logout(){
+        Session::forget("idCs");
+        return redirect("/");
+    }
+
 }

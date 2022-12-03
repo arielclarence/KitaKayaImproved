@@ -43,7 +43,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" id="btnchange">Change Password</button></a></li>
                         <br>
-                        <li><a href="{{url("/logoutBiasa")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
+                        <li><a href="{{url("/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>

@@ -40,7 +40,7 @@
                         @endphp
 
                         <li>EXP : {{ $user->exp || 0 }}</li> --}}
-                        <li><a href="{{url("/logoutAdmin")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
+                        <li><a href="{{url("/admin/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>

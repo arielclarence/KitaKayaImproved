@@ -111,7 +111,7 @@ class AdminController extends Controller
 
     public function logout(){
         Session::forget("idAdmin");
-        return redirect()->route("login");
+        return redirect("/");
     }
 
     public function getMemberByYear(Request $request)
