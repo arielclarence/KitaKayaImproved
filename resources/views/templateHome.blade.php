@@ -18,6 +18,9 @@
             #atur{
                 margin-left: -10%;
             }
+            #btnchange{
+                margin-left: 5px;
+            }
         </style>
     </head>
     <body class="sb-nav-fixed">
@@ -38,8 +41,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="../index.php">Logout</a></li> -->
-                        <li><a href="{{url("/logoutBiasa")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
+                        <li><a><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary" id="btnchange">Change Password</button></a></li>
+                        <br>
+                        <li><a href="{{url("/logout")}}"><button class="btn btn-danger" id="btnkeluar">Logout</button></a></li>
                     </ul>
                 </li>
             </ul>
@@ -81,6 +85,47 @@
                         @yield('content')
                     </div>
                 </main>
+            </div>
+        </div>
+        {{-- untuk Change Password --}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Watchlist</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="container-fluid">
+                            <div class="row gy-4">
+                                <center>
+                                    <div class="col-lg-8">
+                                        <form method="POST">
+                                            @csrf
+                                            <div class="col-lg-6">
+                                                <label for="userName" class="form-label">Old Password</label>
+                                                <input type="password" class="form-control" id="nama" name="passlama">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="form-label">New Password</label><br>
+                                                <input type="password" class="form-control" name="passbaru">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="userName" class="form-label">Confirm New Password</label><br>
+                                                <input type="password" class="form-control" name="conpass">
+                                            </div>
+                                            <br>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary" name="change" data-bs-dismiss="modal">Change Password</button>
+                                            </div>
+                                            <br>
+                                        </form>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

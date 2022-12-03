@@ -114,6 +114,8 @@ Route::prefix('/userBiasa')->group(function() {
     Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs')->middleware([BiasaMiddleware::class]);
     Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat')->middleware([BiasaMiddleware::class]);
 
+    Route::post('/video', [UserBiasaController::class, "changepass"]);
+
 });
 
 Route::prefix('/userVip')->group(function() {
@@ -140,7 +142,7 @@ Route::prefix('/userVip')->group(function() {
     Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip')->middleware([VipMiddleware::class]);
     Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip')->middleware([VipMiddleware::class]);
 
-    // Route::post('/video', [UserVIPController::class, "changepass"]);
+    Route::post('/video', [UserVIPController::class, "changepass"]);
 
 });
 
