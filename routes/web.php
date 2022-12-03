@@ -10,6 +10,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserBiasaController;
 use App\Http\Controllers\UserVIPController;
 use App\Http\Controllers\VideoController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CsMiddleware;
 use Illuminate\Http\Request;
 
 /*
@@ -35,6 +37,8 @@ Route::post('/', [LoginController::class, "login"]);
 Route::get('/register', [LoginController::class, "regis"] );
 Route::post('/register', [LoginController::class, "Register"]);
 Route::get('/logout', [LoginController::class, "logout"]);
+Route::get('/logoutAdmin', [LoginController::class, "logoutAdmin"]);
+Route::get('/logoutCs', [LoginController::class, "logoutCs"]);
 
 Route::get('/kembali', [LoginController::class, "goback"]);
 
@@ -46,38 +50,38 @@ Route::prefix("/email")->group(function() {
 
 
 Route::prefix('/admin')->group(function() {
-    Route::get('/home', [AdminController::class, "view"]);
-    Route::get('/listvideo', [AdminController::class, "listvideo"]);
-    Route::get('/chart', [AdminController::class, "chart"])->name('homeadd');
-    Route::post('/chart', [AdminController::class, "addChart"]);
-    Route::post('/chartt', [AdminController::class, "filter"]);
-    Route::get('/chart/{id}', [AdminController::class, "delete"]);
-    Route::get('/chart/{id}/edit', [AdminController::class, "update"]);
-    Route::post('/chart/{id}/edit', [AdminController::class, "update"]);
-    Route::get('/validasi', [AdminController::class, "validasi"]);
-    Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"]);
-    Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur');
-    Route::post('/addVideo', [VideoController::class, 'add']);
+    Route::get('/home', [AdminController::class, "view"])->middleware([AdminMiddleware::class]);
+    Route::get('/listvideo', [AdminController::class, "listvideo"])->middleware([AdminMiddleware::class]);
+    Route::get('/chart', [AdminController::class, "chart"])->name('homeadd')->middleware([AdminMiddleware::class]);
+    Route::post('/chart', [AdminController::class, "addChart"])->middleware([AdminMiddleware::class]);
+    Route::post('/chartt', [AdminController::class, "filter"])->middleware([AdminMiddleware::class]);
+    Route::get('/chart/{id}', [AdminController::class, "delete"])->middleware([AdminMiddleware::class]);
+    Route::get('/chart/{id}/edit', [AdminController::class, "update"])->middleware([AdminMiddleware::class]);
+    Route::post('/chart/{id}/edit', [AdminController::class, "update"])->middleware([AdminMiddleware::class]);
+    Route::get('/validasi', [AdminController::class, "validasi"])->middleware([AdminMiddleware::class]);
+    Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"])->middleware([AdminMiddleware::class]);
+    Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur')->middleware([AdminMiddleware::class]);
+    Route::post('/addVideo', [VideoController::class, 'add'])->middleware([AdminMiddleware::class]);
     Route::get('/logout', [AdminController::class, "logout"]);
 });
 
 Route::prefix('/cs')->group(function() {
-    Route::get('/listcs', [CsController::class, "listcs"]);
-    Route::get('/cs/{id}', [CsController::class, "todetailcscs"])->name('detailcscs');
-    Route::post('/chat/{id}', [CsController::class, "addchatcs"])->name('addchatcs');
+    Route::get('/listcs', [CsController::class, "listcs"])->middleware([CsMiddleware::class]);
+    Route::get('/cs/{id}', [CsController::class, "todetailcscs"])->name('detailcscs')->middleware([CsMiddleware::class]);
+    Route::post('/chat/{id}', [CsController::class, "addchatcs"])->name('addchatcs')->middleware([CsMiddleware::class]);
 
-    Route::get('/historycs', [CsController::class, "historycs"]);
-    Route::get('/forum', [CsController::class, "forum"]);
-    Route::get('/forum/{id}', [CsController::class, "todetailforumcs"])->name('detailforumcs');
-    Route::get('/editpost/{id}', [CsController::class, "toeditpostforumcs"])->name('toeditpostforumcs');
+    Route::get('/historycs', [CsController::class, "historycs"])->middleware([CsMiddleware::class]);
+    Route::get('/forum', [CsController::class, "forum"])->middleware([CsMiddleware::class]);
+    Route::get('/forum/{id}', [CsController::class, "todetailforumcs"])->name('detailforumcs')->middleware([CsMiddleware::class]);
+    Route::get('/editpost/{id}', [CsController::class, "toeditpostforumcs"])->name('toeditpostforumcs')->middleware([CsMiddleware::class]);
 
-    Route::post('/editpost/{id}', [CsController::class, "editpostforumcs"])->name('editpostforumcs');
-    Route::get('/editreply/{id}', [CsController::class, "toeditreplyforumcs"])->name('toeditreplyforumcs');
-    Route::post('/editreply/{id}', [CsController::class, "editreplyforumcs"])->name('editreplyforumcs');
+    Route::post('/editpost/{id}', [CsController::class, "editpostforumcs"])->name('editpostforumcs')->middleware([CsMiddleware::class]);
+    Route::get('/editreply/{id}', [CsController::class, "toeditreplyforumcs"])->name('toeditreplyforumcs')->middleware([CsMiddleware::class]);
+    Route::post('/editreply/{id}', [CsController::class, "editreplyforumcs"])->name('editreplyforumcs')->middleware([CsMiddleware::class]);
 
-    Route::post('/forum/{id}', [CsController::class, "addpostforumcs"])->name('addpostforumcs');
-    Route::post('/addreply/{id}', [CsController::class, "addreplyforumcs"])->name('addreplyforumcs');
-    Route::post('/addreplycomment/{id}', [CsController::class, "addreplycommentforumcs"])->name('addreplycommentforumcs');
+    Route::post('/forum/{id}', [CsController::class, "addpostforumcs"])->name('addpostforumcs')->middleware([CsMiddleware::class]);
+    Route::post('/addreply/{id}', [CsController::class, "addreplyforumcs"])->name('addreplyforumcs')->middleware([CsMiddleware::class]);
+    Route::post('/addreplycomment/{id}', [CsController::class, "addreplycommentforumcs"])->name('addreplycommentforumcs')->middleware([CsMiddleware::class]);
 });
 
 Route::prefix('/userBiasa')->group(function() {

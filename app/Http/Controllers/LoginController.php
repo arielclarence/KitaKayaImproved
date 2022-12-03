@@ -116,6 +116,16 @@ class LoginController extends Controller
         return redirect()->route("login");
     }
 
+    public function logoutAdmin(){
+        Session::forget("idAdmin");
+        return redirect()->route("login");
+    }
+
+    public function logoutCs(){
+        Session::forget("idCs");
+        return redirect()->route("login");
+    }
+
     public function goback(Request $r){
         Auth::logout();
 
