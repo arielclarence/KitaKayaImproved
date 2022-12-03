@@ -11,7 +11,10 @@ use App\Http\Controllers\UserBiasaController;
 use App\Http\Controllers\UserVIPController;
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\Auth;
+use App\Http\Middleware\BiasaMiddleware;
 use App\Http\Middleware\CsMiddleware;
+use App\Http\Middleware\VipMiddleware;
 use Illuminate\Http\Request;
 
 /*
@@ -31,12 +34,13 @@ use Illuminate\Http\Request;
 // });
 
 
-Route::get('/', function () {return view('index');} )->name("login");
+Route::get('/', function () {return view('index');} )->name("login")->middleware([Auth::class]);
 Route::post('/', [LoginController::class, "login"]);
 
-Route::get('/register', [LoginController::class, "regis"] );
-Route::post('/register', [LoginController::class, "Register"]);
-Route::get('/logout', [LoginController::class, "logout"]);
+Route::get('/register', [LoginController::class, "regis"])->middleware([Auth::class]);
+Route::post('/register', [LoginController::class, "Register"])->middleware([Auth::class]);
+Route::get('/logoutBiasa', [LoginController::class, "logoutBiasa"]);
+Route::get('/logoutVip', [LoginController::class, "logoutVip"]);
 Route::get('/logoutAdmin', [LoginController::class, "logoutAdmin"]);
 Route::get('/logoutCs', [LoginController::class, "logoutCs"]);
 
@@ -50,7 +54,7 @@ Route::prefix("/email")->group(function() {
 
 
 Route::prefix('/admin')->group(function() {
-    Route::get('/home', [AdminController::class, "view"])->middleware([AdminMiddleware::class]);
+    Route::get('/home', [AdminController::class, "view"])->name('AdminHome')->middleware([AdminMiddleware::class]);
     Route::get('/listvideo', [AdminController::class, "listvideo"])->middleware([AdminMiddleware::class]);
     Route::get('/chart', [AdminController::class, "chart"])->name('homeadd')->middleware([AdminMiddleware::class]);
     Route::post('/chart', [AdminController::class, "addChart"])->middleware([AdminMiddleware::class]);
@@ -66,7 +70,7 @@ Route::prefix('/admin')->group(function() {
 });
 
 Route::prefix('/cs')->group(function() {
-    Route::get('/listcs', [CsController::class, "listcs"])->middleware([CsMiddleware::class]);
+    Route::get('/listcs', [CsController::class, "listcs"])->name('CsHome')->middleware([CsMiddleware::class]);
     Route::get('/cs/{id}', [CsController::class, "todetailcscs"])->name('detailcscs')->middleware([CsMiddleware::class]);
     Route::post('/chat/{id}', [CsController::class, "addchatcs"])->name('addchatcs')->middleware([CsMiddleware::class]);
 
@@ -85,57 +89,57 @@ Route::prefix('/cs')->group(function() {
 });
 
 Route::prefix('/userBiasa')->group(function() {
-    Route::get('/video', [UserBiasaController::class, "view"]);
-    Route::get('/forum', [UserBiasaController::class, "forum"]);
-    Route::get('/forum/{id}', [UserBiasaController::class, "todetailforumbiasa"])->name('detailforumbiasa');
-    Route::get('/editpost/{id}', [UserBiasaController::class, "toeditpostforumbiasa"])->name('toeditpostforumbiasa');
-    Route::post('/editpost/{id}', [UserBiasaController::class, "editpostforumbiasa"])->name('editpostforumbiasa');
-    Route::get('/editreply/{id}', [UserBiasaController::class, "toeditreplyforumbiasa"])->name('toeditreplyforumbiasa');
-    Route::post('/editreply/{id}', [UserBiasaController::class, "editreplyforumbiasa"])->name('editreplyforumbiasa');
+    Route::get('/video', [UserBiasaController::class, "view"])->name('userBiasaHome')->middleware([BiasaMiddleware::class]);
+    Route::get('/forum', [UserBiasaController::class, "forum"])->middleware([BiasaMiddleware::class]);
+    Route::get('/forum/{id}', [UserBiasaController::class, "todetailforumbiasa"])->name('detailforumbiasa')->middleware([BiasaMiddleware::class]);
+    Route::get('/editpost/{id}', [UserBiasaController::class, "toeditpostforumbiasa"])->name('toeditpostforumbiasa')->middleware([BiasaMiddleware::class]);
+    Route::post('/editpost/{id}', [UserBiasaController::class, "editpostforumbiasa"])->name('editpostforumbiasa')->middleware([BiasaMiddleware::class]);
+    Route::get('/editreply/{id}', [UserBiasaController::class, "toeditreplyforumbiasa"])->name('toeditreplyforumbiasa')->middleware([BiasaMiddleware::class]);
+    Route::post('/editreply/{id}', [UserBiasaController::class, "editreplyforumbiasa"])->name('editreplyforumbiasa')->middleware([BiasaMiddleware::class]);
 
-    Route::post('/forum/{id}', [UserBiasaController::class, "addpostforumbiasa"])->name('addpostforumbiasa');
-    Route::post('/addreply/{id}', [UserBiasaController::class, "addreplyforumbiasa"])->name('addreplyforumbiasa');
-    Route::post('/addreplycomment/{id}', [UserBiasaController::class, "addreplycommentforumbiasa"])->name('addreplycommentforumbiasa');
+    Route::post('/forum/{id}', [UserBiasaController::class, "addpostforumbiasa"])->name('addpostforumbiasa')->middleware([BiasaMiddleware::class]);
+    Route::post('/addreply/{id}', [UserBiasaController::class, "addreplyforumbiasa"])->name('addreplyforumbiasa')->middleware([BiasaMiddleware::class]);
+    Route::post('/addreplycomment/{id}', [UserBiasaController::class, "addreplycommentforumbiasa"])->name('addreplycommentforumbiasa')->middleware([BiasaMiddleware::class]);
 
-    Route::get('/upgrade', [UserBiasaController::class, "upgrade"]);
-    Route::get('/history', [UserBiasaController::class, "history"]);
-    Route::get('/cs', [UserBiasaController::class, "cs"]);
-    Route::post('/pertanyaan', [UserBiasaController::class, "addpertanyaan"])->name('addpertanyaan');
+    Route::get('/upgrade', [UserBiasaController::class, "upgrade"])->middleware([BiasaMiddleware::class]);
+    Route::get('/history', [UserBiasaController::class, "history"])->middleware([BiasaMiddleware::class]);
+    Route::get('/cs', [UserBiasaController::class, "cs"])->middleware([BiasaMiddleware::class]);
+    Route::post('/pertanyaan', [UserBiasaController::class, "addpertanyaan"])->name('addpertanyaan')->middleware([BiasaMiddleware::class]);
 
-    Route::post('/finishchat/{id}', [UserBiasaController::class, "finishservicebiasa"])->name('finishservicebiasa');
-    Route::post('/rate/{id}', [UserBiasaController::class, "rateservicebiasa"])->name('rateservicebiasa');
-    Route::post('/unsend/{id}', [UserBiasaController::class, "unsendchatbiasa"])->name('unsendchatbiasa');
+    Route::post('/finishchat/{id}', [UserBiasaController::class, "finishservicebiasa"])->name('finishservicebiasa')->middleware([BiasaMiddleware::class]);
+    Route::post('/rate/{id}', [UserBiasaController::class, "rateservicebiasa"])->name('rateservicebiasa')->middleware([BiasaMiddleware::class]);
+    Route::post('/unsend/{id}', [UserBiasaController::class, "unsendchatbiasa"])->name('unsendchatbiasa')->middleware([BiasaMiddleware::class]);
 
-    Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs');
-    Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat');
+    Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs')->middleware([BiasaMiddleware::class]);
+    Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat')->middleware([BiasaMiddleware::class]);
 
     Route::post('/video', [UserBiasaController::class, "changepass"]);
 
 });
 
 Route::prefix('/userVip')->group(function() {
-    Route::get('/video', [UserVIPController::class, "view"]);
-    Route::get('/forum', [UserVIPController::class, "forum"]);
-    Route::get('/forum/{id}', [UserVIPController::class, "todetailforumvip"])->name('detailforumvip');
-    Route::get('/editpost/{id}', [UserVIPController::class, "toeditpostforumvip"])->name('toeditpostforumvip');
-    Route::post('/editpost/{id}', [UserVIPController::class, "editpostforumvip"])->name('editpostforumvip');
-    Route::get('/editreply/{id}', [UserVIPController::class, "toeditreplyforumvip"])->name('toeditreplyforumvip');
-    Route::post('/editreply/{id}', [UserVIPController::class, "editreplyforumvip"])->name('editreplyforumvip');
+    Route::get('/video', [UserVIPController::class, "view"])->name('userVipHome')->middleware([VipMiddleware::class]);
+    Route::get('/forum', [UserVIPController::class, "forum"])->middleware([VipMiddleware::class]);
+    Route::get('/forum/{id}', [UserVIPController::class, "todetailforumvip"])->name('detailforumvip')->middleware([VipMiddleware::class]);
+    Route::get('/editpost/{id}', [UserVIPController::class, "toeditpostforumvip"])->name('toeditpostforumvip')->middleware([VipMiddleware::class]);
+    Route::post('/editpost/{id}', [UserVIPController::class, "editpostforumvip"])->name('editpostforumvip')->middleware([VipMiddleware::class]);
+    Route::get('/editreply/{id}', [UserVIPController::class, "toeditreplyforumvip"])->name('toeditreplyforumvip')->middleware([VipMiddleware::class]);
+    Route::post('/editreply/{id}', [UserVIPController::class, "editreplyforumvip"])->name('editreplyforumvip')->middleware([VipMiddleware::class]);
 
-    Route::post('/forum/{id}', [UserVIPController::class, "addpostforumvip"])->name('addpostforumvip');
-    Route::post('/addreply/{id}', [UserVIPController::class, "addreplyforumvip"])->name('addreplyforumvip');
-    Route::post('/addreplycomment/{id}', [UserVIPController::class, "addreplycommentforumvip"])->name('addreplycommentforumvip');
+    Route::post('/forum/{id}', [UserVIPController::class, "addpostforumvip"])->name('addpostforumvip')->middleware([VipMiddleware::class]);
+    Route::post('/addreply/{id}', [UserVIPController::class, "addreplyforumvip"])->name('addreplyforumvip')->middleware([VipMiddleware::class]);
+    Route::post('/addreplycomment/{id}', [UserVIPController::class, "addreplycommentforumvip"])->name('addreplycommentforumvip')->middleware([VipMiddleware::class]);
 
-    Route::get('/rekomendasi', [UserVIPController::class, "rekomendasi"]);
-    Route::get('/history', [UserVIPController::class, "history"]);
-    Route::get('/cs', [UserVIPController::class, "cs"]);
-    Route::post('/pertanyaan', [UserVIPController::class, "addpertanyaanvip"])->name('addpertanyaanvip');
+    Route::get('/rekomendasi', [UserVIPController::class, "rekomendasi"])->middleware([VipMiddleware::class]);
+    Route::get('/history', [UserVIPController::class, "history"])->middleware([VipMiddleware::class]);
+    Route::get('/cs', [UserVIPController::class, "cs"])->middleware([VipMiddleware::class]);
+    Route::post('/pertanyaan', [UserVIPController::class, "addpertanyaanvip"])->name('addpertanyaanvip')->middleware([VipMiddleware::class]);
 
-    Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip');
-    Route::post('/chat/{id}', [UserVIPController::class, "addchatvip"])->name('addchatvip');
-    Route::post('/unsend/{id}', [UserVIPController::class, "unsendchatvip"])->name('unsendchatvip');
-    Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip');
-    Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip');
+    Route::get('/cs/{id}', [UserVIPController::class, "todetailcsvip"])->name('detailcsvip')->middleware([VipMiddleware::class]);
+    Route::post('/chat/{id}', [UserVIPController::class, "addchatvip"])->name('addchatvip')->middleware([VipMiddleware::class]);
+    Route::post('/unsend/{id}', [UserVIPController::class, "unsendchatvip"])->name('unsendchatvip')->middleware([VipMiddleware::class]);
+    Route::post('/finishchat/{id}', [UserVIPController::class, "finishservicevip"])->name('finishservicevip')->middleware([VipMiddleware::class]);
+    Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip')->middleware([VipMiddleware::class]);
 
     Route::post('/video', [UserVIPController::class, "changepass"]);
 

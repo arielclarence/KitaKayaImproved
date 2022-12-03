@@ -113,8 +113,13 @@ class LoginController extends Controller
         return response()->view("Email.done")->withHeaders(["Refresh"=>"4;url=$link"]);
     }
 
-    public function logout(){
-        Session::forget("idUser");
+    public function logoutBiasa(){
+        Session::forget("idUserBiasa");
+        return redirect()->route("login");
+    }
+
+    public function logoutVip(){
+        Session::forget("idUserVip");
         return redirect()->route("login");
     }
 
