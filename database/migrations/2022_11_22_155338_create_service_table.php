@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('judul');
             $table->integer('member');
             $table->integer('rate');
+            $table->integer('status');
             $table->timestamps();
         });
     }
