@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('namamember');
             $table->text('isi');
             $table->integer('reply');
+            $table->integer('unsend');
+
             $table->timestamps();
         });
     }
