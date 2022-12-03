@@ -37,6 +37,7 @@ class LoginController extends Controller
                 //     return redirect()->back();
                 // }
                 Session::put("nama", $user->nama);
+                Session::put("idUserBiasa", $user->id);
                 return redirect('/userBiasa/video');
             }else if ($user->role == "1") {
                 // if ($user->email_verified_at == null) {
@@ -45,6 +46,7 @@ class LoginController extends Controller
                 //     return redirect()->back();
                 // }
                 Session::put("nama", $user->nama);
+                Session::put("idUserVip", $user->id);
                 return redirect('/userVip/video');
             }
 
@@ -111,8 +113,13 @@ class LoginController extends Controller
         return response()->view("Email.done")->withHeaders(["Refresh"=>"4;url=$link"]);
     }
 
-    public function logout(){
-        Session::forget("idUser");
+    public function logoutBiasa(){
+        Session::forget("idUserBiasa");
+        return redirect()->route("login");
+    }
+
+    public function logoutVip(){
+        Session::forget("idUserVip");
         return redirect()->route("login");
     }
 
