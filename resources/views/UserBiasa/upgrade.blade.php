@@ -71,9 +71,9 @@
                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 1 Bulan di depan</p>
                     </ul>
                     <div class="card-body text-center">
-                    <form action="../controllers/auth.php" method="POST">
-                        <a href="" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
-                    </form>
+
+                        <a href="{{url('/userBiasa/halamanupgrade')}}" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
+
                     </div>
                 </div>
                 </div>

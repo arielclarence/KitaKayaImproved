@@ -27,6 +27,10 @@ class UserBiasaController extends Controller
         ]);
     }
 
+    public function viewHalamanUpgrade(){
+        return view('UserBiasa.halamanupgrade');
+    }
+
     public function changePass(Request $request){
         $passlama = $request->input('passlama');
         $passbaru = $request->input('passbaru');
