@@ -7,9 +7,10 @@ use App\Models\Service;
 use App\Models\Kategori;
 use App\Models\Comment;
 use App\Models\ThreadForum;
+use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Video;
-
+use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -28,6 +29,11 @@ class UserBiasaController extends Controller
     }
 
     public function viewHalamanUpgrade(){
+        $transaksi = new Transaksi();
+
+        $midtrans = new CreateSnapTokenService($transaksi);
+        // table e harus dibenerno ada snapToken e
+
         return view('UserBiasa.halamanupgrade');
     }
 
