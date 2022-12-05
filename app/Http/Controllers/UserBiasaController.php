@@ -31,10 +31,24 @@ class UserBiasaController extends Controller
     public function viewHalamanUpgrade(){
         $transaksi = new Transaksi();
 
-        $midtrans = new CreateSnapTokenService($transaksi);
-        // table e harus dibenerno ada snapToken e
+        $namaLogin = Session::get("nama", "Saya");
 
-        return view('UserBiasa.halamanupgrade');
+        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
+
+        $transaksi->nama = $namaLogin;
+        $transaksi->id_member = $ambilIdMember->id;
+        $transaksi->bulan = "1";
+        $transaksi->subtotal = "120000";
+        $transaksi->status = "0";
+
+        $midtrans = new CreateSnapTokenService($transaksi);
+        $snapToken = $midtrans->getSnapToken();
+
+        $transaksi->snap_token = $snapToken;
+        $transaksi->save();
+
+
+        return view('UserBiasa.halamanupgrade', compact('snapToken'));
     }
 
     public function changePass(Request $request){

@@ -5,6 +5,7 @@ namespace App\Services\Midtrans;
 use App\Models\TopUp;
 use App\Services\Midtrans\Midtrans;
 use Midtrans\Notification;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CallbackService extends Midtrans
 {
@@ -31,7 +32,10 @@ class CallbackService extends Midtrans
         $transactionStatus = $this->notification->transaction_status;
         $fraudStatus = !empty($this->notification->fraud_status) ? ($this->notification->fraud_status == 'accept') : true;
 
-        return ($statusCode == 200 && $fraudStatus && ($transactionStatus == 'capture' || $transactionStatus == 'settlement'));
+        // habis berhasil pindahnya ??
+        Alert::success('Success', 'Berhasil Update Password!');
+        return redirect()->back();
+        // return ($statusCode == 200 && $fraudStatus && ($transactionStatus == 'capture' || $transactionStatus == 'settlement'));
     }
 
     public function isExpire()

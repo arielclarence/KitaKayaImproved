@@ -16,21 +16,19 @@
                 </button>
             </div>
             <br>
-            <form action="../controllers/transaksi.php" method="POST">
+            <form method="POST">
                 <table class="table table-dark table-striped">
                     <thead>
                         <th>Nama Member</th>
-                        <th>Bukti Pembayaran</th>
                         <th>Tanggal</th>
                         <th>Status</th>
                     </thead>
                     <tbody>
                         @forelse ($listHistory as $history)
                         <tr>
-                            <td>{{ $history->id_member }}</td>
-                            <td>{{ $history->bukti }}</td>
+                            <td>{{ $history->nama }}</td>
                             <td>{{ $history->created_at }}</td>
-                            <td>{{ $history->status }}</td>
+                            <td>Berhasil</td>
                         </tr>
                         @empty
 

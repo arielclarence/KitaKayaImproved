@@ -71,9 +71,7 @@
                     <p class="card-text" id="biarterlihat">*Pembayaran Langsung 1 Bulan di depan</p>
                     </ul>
                     <div class="card-body text-center">
-
                         <a href="{{url('/userBiasa/halamanupgrade')}}" class="btn btn-outline-primary btn-lg" style="border-radius:30px" name="btnbeli">Beli</a>
-
                     </div>
                 </div>
                 </div>
