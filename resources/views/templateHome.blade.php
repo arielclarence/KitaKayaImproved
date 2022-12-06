@@ -66,10 +66,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-door-open"></i></div>
                                 Upgrade To VIP Member
                             </a>
-                            <a class="nav-link" href="{{url('/userBiasa/history')}}">
+                            {{-- <a class="nav-link" href="{{url('/userBiasa/history')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 History Transaksi
-                            </a>
+                            </a> --}}
                             <div class="sb-sidenav-menu-heading">Service</div>
                             <a class="nav-link" href="{{url('/userBiasa/cs')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-headphones"></i></div>

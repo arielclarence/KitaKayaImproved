@@ -14,7 +14,7 @@
                 foreach($videos as $video){
                     ?>
                     <tr>
-                        <td><?=  $video->nama?></td>
+                        <td><?=  $video->judul?></td>
                         <td><a href="{{ route('detailforumcs', $video->id) }}" class="btn btn-primary">Detail</a></td>
 
                     </tr>

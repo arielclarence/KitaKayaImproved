@@ -1,7 +1,7 @@
 @extends('templateHome')
 @section('content')
     <h1 class="mt-4">Forum</h1>
-    <h1 class="mt-4">{{ $video->nama}}</h1>
+    <h1 class="mt-4">{{ $video->judul}}</h1>
     <table class="table table-dark table-striped">
         <thead>
         </thead>
@@ -44,7 +44,7 @@
                                     <form action="{{ route('toeditpostforumbiasa', $thread->id) }}" method="GET">
                                         @csrf
                                     <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                        <button type="submit" class="btn btn-primary" >Edit</button>
+                                        <button type="submit" class="btn btn-warning" >Edit</button>
                                     </div>
                                     </form>
                                 @endif
@@ -67,62 +67,22 @@
                                                 @endif
                                                 <p style="margin-left: 20px;"><b>{{$comment->namamember}}</b> {{$date}} {{$time}}</p>
                                                 <h4 style="margin-left: 20px;">{{$comment->isi}}</h4>
-                    
+
                                             </span>
 
                                         </form>
-                                        @if ($comment->namamember==Session::get('nama'))
+                                            @if ($comment->namamember==Session::get('nama'))
 
-                                        <form action="{{ route('toeditreplyforumbiasa', $comment->id) }}" method="GET">
-                                            @csrf
-                                        <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                            <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
-                                        </div>
-                                        </form>
-                                        @endif
+                                            <form action="{{ route('toeditreplyforumbiasa', $comment->id) }}" method="GET">
+                                                @csrf
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
+                                            </div>
+                                            </form>
+                                            @endif
 
 
-                                                @php
-                                                    $cek=1;
-                                                    $idcomment=$comment->id;
-                                                @endphp
-                                                @while ($cek==0)
-                                                    @php
-                                                        $cek=0;
-                                                    @endphp
-                                                    @foreach ($comments as $reply)
 
-                                                    @if ($thread->id==$reply->thread&&$reply->reply==$idcomment)
-                                                        @php
-                                                            $cek=$cek+1;
-                                                        @endphp
-                                                    <form action="{{ route('addreplycommentforumbiasa', $reply->id) }}" method="POST">
-                                                        <span>
-                                                            <br>
-                                                            @php
-                                                            $input = $reply->created_at;
-                                                            $lengkap = strtotime($input);
-                                                            $date=date('d-M-Y', $lengkap);
-                                                            $time=date('h:i:s', $lengkap);
-                                                            @endphp
-
-                                                            <h4>{{$date}}</h4>
-                                                            <h4>{{$time}}</h4>
-                                                            @if ($reply->created_at!=$reply->updated_at)
-                                                            <h4>(Edited)</h4>
-
-                                                            @endif
-                                                            <h4 style="margin-left: 20px;">Pereply : {{$commentreply->namamember}}</h4>
-                                                            <h4 style="margin-left: 20px;">Isi : {{$commentreply->isi}}</h4>
-                                                            <input type="text" id="namamenu" name="isireplycomment" placeholder="Isi reply" class="form-control" style="margin-left: 60px;">
-                                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                                                <button class="btn btn-primary" name="replycomment" style="margin-left: 60px;">Reply</button>
-                                                            </div>
-                                                            </span>
-                                                        </form>
-                                                    @endif
-                                                    @endforeach
-                                                @endwhile
 
 
 
