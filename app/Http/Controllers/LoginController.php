@@ -84,13 +84,14 @@ class LoginController extends Controller
             "nama" => $in["nama"],
             "umur" => $in["umur"],
             "role" => 0,
+            "exp" => 0,
             "status" => 1
         ]);
 
         // $result = new User();
         // $result->nama = $request->nama;
         // $result->email = $request->email;
-        // $result->password = $request->pass;
+        // $result->password = password_hash($in["pass"], PASSWORD_DEFAULT);
         // $result->umur = $request->umur;
         // $result->role = 1;
         // $result->status = 1;

@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'password' => fake()->password(),
             'umur' => $this->faker->numberBetween(17, 50),
             'role' => 1,
+            'exp' => 0,
             'status' => 1
         ];
     }
