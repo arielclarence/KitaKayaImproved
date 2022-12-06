@@ -30,6 +30,7 @@ class UserBiasaController extends Controller
         ]);
     }
 
+    //finish
     public function viewHalamanUpgrade(){
         $namaLogin = Session::get("nama", "Saya");
         $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
