@@ -65,6 +65,8 @@ Route::prefix('/admin')->group(function() {
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"])->middleware([AdminMiddleware::class]);
     Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur')->middleware([AdminMiddleware::class]);
     Route::post('/addVideo', [VideoController::class, 'add'])->middleware([AdminMiddleware::class]);
+    Route::post('/filternama', [AdminController::class, 'filterNama'])->name("filterNama");
+    Route::post('/filtertanggal', [AdminController::class, 'filterTanggal'])->name("filterTanggal");
     Route::get('/logout', [AdminController::class, "logout"]);
 });
 
