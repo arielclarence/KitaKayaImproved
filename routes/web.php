@@ -148,6 +148,8 @@ Route::prefix('/userVip')->group(function() {
 
     Route::post('/video', [UserVIPController::class, "changepass"]);
 
+    Route::get('/profile', [UserVIPController::class, "todetailuser"]);
+
 });
 
 
