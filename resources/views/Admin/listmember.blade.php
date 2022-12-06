@@ -1,7 +1,6 @@
 @extends('templateAdmin')
 @section('content')
 <main>
-    @include("sweetalert::alert")
     <div class="container-fluid px-4">
         <h1 class="mt-4">List Member</h1>
         <form action="{{url('/admin/listmember')}}" method="POST">
@@ -46,6 +45,9 @@
 
                     </tr>
                     @empty
+                    <tr>
+                        <td colspan="6" style="text-align: center;">Tidak ada user!</td>
+                    </tr>
 
                     @endforelse
                 </tbody>

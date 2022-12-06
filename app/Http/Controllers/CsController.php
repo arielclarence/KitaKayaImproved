@@ -37,9 +37,11 @@ class CsController extends Controller
         $service = Service::find($request->id);
         $user = User::find($service->member);
         $chats = Chat::all()->where('service',  $service->id);
+        $nama = $user->nama;
         return view('CustomerService.chat', [
             "service" => $service,
-            "chats" => $chats
+            "chats" => $chats,
+            "nama" => $nama
         ]);
     }
 
@@ -47,6 +49,8 @@ class CsController extends Controller
         $service = Service::find($request->id);
         $data = new Chat();
         $data->service =$request->id;
+        $user = User::find($service->member);
+        $nama = $user->nama;
 
         $data->pengirim =1;
 
@@ -56,7 +60,8 @@ class CsController extends Controller
         $chats = Chat::all()->where('service',  $service->id);
         return view('CustomerService.chat', [
             "service" => $service,
-            "chats" => $chats
+            "chats" => $chats,
+            "nama" => $nama
         ]);
     }
     public function forum(){
@@ -279,17 +284,20 @@ class CsController extends Controller
 
 
     }
-    public function unsendchatcs(Request $request){
 
+    public function unsendchatcs(Request $request){
         $data = Chat::find($request->id);
         $data->unsend =1;
         $data->save();
         $service = Service::find($data->service);
+        $user = User::find($service->member);
+        $nama = $user->nama;
 
         $chats = Chat::all()->where('service',  $data->service);
         return view('CustomerService.chat', [
             "service" => $service,
-            "chats" => $chats
+            "chats" => $chats,
+            "nama" => $nama
         ]);
     }
 
