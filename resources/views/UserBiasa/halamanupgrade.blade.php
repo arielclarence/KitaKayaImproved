@@ -8,11 +8,10 @@
         data-client-key="SET_YOUR_CLIENT_KEY_HERE"></script>
       <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
     </head>
-
-
-
     <body>
-
+        <br>
+        <h2>Bayar Sekarang dan jadilah Member VIP!</h3>
+        <br>
         <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
 
         <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>

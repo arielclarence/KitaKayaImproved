@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Midtrans\Snap;
 
-class CreateSnapTokenService extends Midtrans
+class CreateSnapTokenService2 extends Midtrans
 {
     protected $order;
 
@@ -31,10 +31,10 @@ class CreateSnapTokenService extends Midtrans
             ],
             'item_details' => [
                 [
-                    'id' => 1,
-                    'price' => '120000',
+                    'id' => 2,
+                    'price' => '500000',
                     'quantity' => 1,
-                    'name' => 'Paket Standart',
+                    'name' => 'Paket Super',
                 ],
             ],
             'customer_details' => [

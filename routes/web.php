@@ -116,7 +116,8 @@ Route::prefix('/userBiasa')->group(function() {
     Route::post('/video', [UserBiasaController::class, "changepass"]);
 
     Route::get('/halamanupgrade', [UserBiasaController::class, "viewHalamanUpgrade"]);
-
+    Route::get('/halamanupgradee', [UserBiasaController::class, "viewHalamanUpgrade2"]);
+    Route::get('/halamanupgradeee', [UserBiasaController::class, "viewHalamanUpgrade3"]);
 });
 
 Route::prefix('/userVip')->group(function() {

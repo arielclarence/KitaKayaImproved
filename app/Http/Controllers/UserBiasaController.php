@@ -11,6 +11,8 @@ use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Video;
 use App\Services\Midtrans\CreateSnapTokenService;
+use App\Services\Midtrans\CreateSnapTokenService2;
+use App\Services\Midtrans\CreateSnapTokenService3;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -29,12 +31,11 @@ class UserBiasaController extends Controller
     }
 
     public function viewHalamanUpgrade(){
-        $transaksi = new Transaksi();
-
         $namaLogin = Session::get("nama", "Saya");
-
         $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
+        DB::update('update user set role = ? where id = ?', ["1" ,  $ambilIdMember->id]);
 
+        $transaksi = new Transaksi();
         $transaksi->nama = $namaLogin;
         $transaksi->id_member = $ambilIdMember->id;
         $transaksi->bulan = "1";
@@ -47,6 +48,53 @@ class UserBiasaController extends Controller
         $transaksi->snap_token = $snapToken;
         $transaksi->save();
 
+        // DB::update('update user set role = ? where id = ?', [$ambilIdMember->role ,  $ambilIdMember->id]);
+
+        return view('UserBiasa.halamanupgrade', compact('snapToken'));
+    }
+
+    public function viewHalamanUpgrade2(){
+        $namaLogin = Session::get("nama", "Saya");
+        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
+        DB::update('update user set role = ? where id = ?', ["1" ,  $ambilIdMember->id]);
+
+        $transaksi = new Transaksi();
+        $transaksi->nama = $namaLogin;
+        $transaksi->id_member = $ambilIdMember->id;
+        $transaksi->bulan = "6";
+        $transaksi->subtotal = "500000";
+        $transaksi->status = "0";
+
+        $midtrans = new CreateSnapTokenService2($transaksi);
+        $snapToken = $midtrans->getSnapToken();
+
+        $transaksi->snap_token = $snapToken;
+        $transaksi->save();
+
+        // DB::update('update user set role = ? where id = ?', [$ambilIdMember->role ,  $ambilIdMember->id]);
+
+        return view('UserBiasa.halamanupgrade', compact('snapToken'));
+    }
+
+    public function viewHalamanUpgrade3(){
+        $namaLogin = Session::get("nama", "Saya");
+        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
+        DB::update('update user set role = ? where id = ?', ["1" ,  $ambilIdMember->id]);
+
+        $transaksi = new Transaksi();
+        $transaksi->nama = $namaLogin;
+        $transaksi->id_member = $ambilIdMember->id;
+        $transaksi->bulan = "12";
+        $transaksi->subtotal = "1100000";
+        $transaksi->status = "0";
+
+        $midtrans = new CreateSnapTokenService3($transaksi);
+        $snapToken = $midtrans->getSnapToken();
+
+        $transaksi->snap_token = $snapToken;
+        $transaksi->save();
+
+        // DB::update('update user set role = ? where id = ?', [$ambilIdMember->role ,  $ambilIdMember->id]);
 
         return view('UserBiasa.halamanupgrade', compact('snapToken'));
     }
