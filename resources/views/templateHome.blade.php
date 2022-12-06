@@ -75,6 +75,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-headphones"></i></div>
                                 Customer Service
                             </a>
+
+                            <a class="nav-link" href="{{url('/userBiasa/profile')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
+                                My Profile
+                            </a>
                         </div>
                     </div>
                 </nav>

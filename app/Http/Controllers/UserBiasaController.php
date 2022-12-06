@@ -132,6 +132,14 @@ class UserBiasaController extends Controller
         }
     }
 
+    public function todetailuser(){
+        $namaLogin = Session::get("nama", "Saya");
+        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->get();
+        return view('UserBiasa.profile',[
+            "data_user" => $ambilIdMember
+        ]);
+    }
+
     public function todetailcs(Request $request){
         $service = Service::find($request->id);
 
