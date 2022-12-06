@@ -202,6 +202,43 @@ class UserBiasaController extends Controller
         ]);
     }
 
+    //detail thread forum
+    public function toDetailThreadForum($id)
+    {
+        $thread_forum = ThreadForum::find($id);
+        $comments = Comment::where('thread','=',$id)->get();
+
+        return view('UserBiasa.threadDetail', [
+            'thread' =>$thread_forum,
+            'comments' => $comments
+        ]);
+    }
+
+    //add comment on detail thread forum
+    public function addDetailThreadForumComment(Request $request)
+    {
+        # code...
+        $isi = $request->isi;
+        $nama =  Session::get('nama');
+        $threadId = $request->input('thread-id');
+
+        $new = new Comment();
+        $new->thread = $threadId;
+        $new->namamember = $nama;
+        $new->isi = $isi;
+        $new->reply = 0;
+        $new->unsend = 0;
+        $new->save();
+
+        $userId = Session::get("idUser");
+        $user = User::where('email','=', $userId)->first();
+        $exp = $user->exp;
+        $user->exp = $exp + 10;
+        $user->save();
+
+        return back();
+    }
+
     public function todetailforumbiasa(Request $request){
 
         $threads = ThreadForum::all()->where('kategori',  $request->id);
@@ -215,7 +252,6 @@ class UserBiasaController extends Controller
             "video" => $video,
             "idkategori" => $idkategori,
             "comments" => $comments
-
         ]);
     }
 
@@ -344,7 +380,6 @@ class UserBiasaController extends Controller
 
         $rules = [
             "isi" => "required"
-
         ];
         $messages = [
             "required" => "attribute kosong",

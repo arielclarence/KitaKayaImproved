@@ -1,7 +1,16 @@
 @extends('templatehomevip')
 @section('content')
-
-<h1 class="mt-4">{{ $video->judul}}</h1>
+<div class="mb-2">
+    <h1 class="mt-4">Forum {{ $video->judul}}</h1>
+    <div class="row">
+        <div class="col">
+            <p>Cari Pembahasan mengenai forum kamu disini...</p>
+        </div>
+        <div class="col-3 text-end">
+            <a href="{{ url('/userBiasa/forum') }}" class="btn btn-danger">Back To Forums</a>
+        </div>
+    </div>
+</div>
     <table class="table table-dark table-striped">
         <thead>
         </thead>
