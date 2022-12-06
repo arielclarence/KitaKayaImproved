@@ -57,10 +57,14 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-video"></i></div>
                                 Video
                             </a>
-                            <a class="nav-link" href="{{url('/userVip/forum')}}">
+                            <a class="nav-link" href="{{url('/userBiasa/forum')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                                 Forum
                             </a>
+                            {{-- <a class="nav-link" href="{{url('/userVip/forum')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
+                                Forum
+                            </a> --}}
                             <a class="nav-link" href="{{url('/userVip/rekomendasi')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-door-open"></i></div>
                                 Rekomendasi Saham
