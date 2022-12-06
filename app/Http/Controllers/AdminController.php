@@ -117,7 +117,11 @@ class AdminController extends Controller
     }
 
     public function chartperkembangan(){
-        return view('Admin.chartperkembangan');
+        $year = DB::select("SELECT YEAR(created_at) AS year FROM user GROUP BY YEAR(created_at)");
+
+        return view('Admin.chartperkembangan',[
+            'year' => $year
+        ]);
     }
 
     public function chartumur(){

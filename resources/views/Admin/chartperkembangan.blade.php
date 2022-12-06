@@ -8,9 +8,20 @@
     <br>
     {{-- <select name="" id="tahun"></select> --}}
     <div class="mb-4">
-        <input type="number" placeholder="Masukan Tahun" id="tahun" class="form-control">
-        <br>
-        <button id="search" class="btn btn-primary">search</button>
+        {{-- <input type="number" placeholder="Masukan Tahun" id="tahun" class="form-control"> --}}
+        @if (count($year) <= 0)
+            <h1>Tidak ada member...</h1>
+        @else
+            <select class="form-control" id="tahun">
+                @forelse ($year as $item)
+                <option value="{{ $item->year }}">{{ $item->year }}</option>
+                @empty
+
+                @endforelse
+            </select>
+            <br>
+            <button id="search" class="btn btn-primary">search</button>
+        @endif
     </div>
 
     <div id="result">
