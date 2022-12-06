@@ -7,7 +7,7 @@
             @csrf
             <div class="form-outline">
                 <label class="form-label" for="form1">Search</label>
-                <input type="search" name="search">
+                <input type="search" name="search" placeholder="Insert Name or Email">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-search"></i>
                 </button>
@@ -40,7 +40,7 @@
                         @if ($user->status == 1)
                             <td><p style="color: lightgreen">Active</p></td>
                         @else
-                            <td><p style="color: red">Expireds</p></td>
+                            <td><p style="color: red">Deactived</p></td>
                         @endif
 
                     </tr>

@@ -110,8 +110,7 @@ class AdminController extends Controller
 
     public function searchmember(Request $request){
         $q = $request->input('search');
-        $user = DB::table('user')->where('nama','LIKE', '%'.$q.'%')->get();
-
+        $user = DB::table('user')->where('nama','LIKE', '%'.$q.'%')->orWhere('email','LIKE', '%'.$q.'%')->get();
         return view('Admin.listmember',[
             "listUser" => $user
         ]);
