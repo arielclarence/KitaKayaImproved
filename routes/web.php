@@ -113,6 +113,8 @@ Route::prefix('/userBiasa')->group(function() {
     Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs');
     Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat');
 
+    Route::get('/profile', [UserBiasaController::class, "todetailuser"]);
+
     Route::post('/video', [UserBiasaController::class, "changepass"]);
 
     Route::get('/halamanupgrade', [UserBiasaController::class, "viewHalamanUpgrade"]);
