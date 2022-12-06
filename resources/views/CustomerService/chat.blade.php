@@ -28,38 +28,30 @@
                 @if ($chat->unsend==0)
 
 
-                @if ($chat->pengirim==0)
-                    <input id="punyaecs" class="form-control" type="text" value="User : {{$chat->isi}}" aria-label="readonly input example" readonly>
+                @if ($chat->pengirim==1)
+                    <form class="form-horizontal" action="{{ route('unsendchatcs', $chat->id) }}" method="POST">
+                        @csrf
+                        <div class="form-control" id="punyaecs">
+                            <button name="btnaddchat" type="submit" onclick="return confirm('Are you sure you want to unsend this massage?')" >Unsend</button>
+                            <input  type="text" value="Me :{{$chat->isi}} "  aria-label="readonly input example" readonly>
+                        </div>
+                    </form>
                     <br>
                 @else
-
-                    <form class="form-horizontal" action="{{ route('unsendchatcs', $chat->id) }}" method="POST">
-                    @csrf
-
-                        <div class="form-control" id="punyaeuser">
-                            <button name="btnaddchat" type="submit" onclick="return confirm('Are you sure you want to unsend this massage?')" >Unsend</button>
-                    <input  type="text" value="Me :{{$chat->isi}} "  aria-label="readonly input example" readonly>
-                    </div>
-                </form>
+                    <input  type="text" value="{{$nama}} :{{$chat->isi}} "  aria-label="readonly input example" readonly>
                     <br>
                 @endif
 
 
             @else
                 {{-- Pengirim : 1 VIP, 0 User --}}
-                @if ($chat->pengirim==0)
-                    <input id="punyaecs" class="form-control" type="text" value=" User : This Massage has been unsent" aria-label="readonly input example" readonly>
+                @if ($chat->pengirim==1)
+                    <input id="punyaecs" class="form-control" type="text" value="Me : This Massage has been unsent" aria-label="readonly input example" readonly>
                     <br>
                 @else
-
-
-
-
-
-                    <input class="form-control" id="punyaeuser"  type="text" value="Me : This Massage has been unsent"  aria-label="readonly input example" readonly>
-
-                </form>
+                    <input class="form-control" id="punyaeuser"  type="text" value="{{$nama}} : This Massage has been unsent"  aria-label="readonly input example" readonly>
                     <br>
+                </form>
                 @endif
 
             @endif
