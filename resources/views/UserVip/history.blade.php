@@ -9,8 +9,9 @@
             </ol>
             <main>
             <div class="form-outline">
-                <label class="form-label" for="form1">Search</label>
-                <input type="search"/>
+                <label class="form-label" for="form1">Search</label><br>
+                Tanggal Transaksi :
+                <input type="date" name="dateawal" id=""> - <input type="date" name="dateakhir" id="">
                 <button type="button" class="btn btn-primary">
                     <i class="fas fa-search"></i>
                 </button>
@@ -20,11 +21,19 @@
                 <table class="table table-dark table-striped">
                     <thead>
                         <th>Nama Member</th>
-                        <th>Bukti Pembayaran</th>
                         <th>Tanggal</th>
                         <th>Status</th>
                     </thead>
                     <tbody>
+                        @forelse ($listHistory as $history)
+                        <tr>
+                            <td>{{ $history->nama }}</td>
+                            <td>{{ $history->created_at }}</td>
+                            <td>Berhasil</td>
+                        </tr>
+                        @empty
+
+                        @endforelse
                     </tbody>
                 </table>
             </form>

@@ -285,7 +285,12 @@ class UserVIPController extends Controller
     }
 
     public function history(){
-        return view('UserVip.history');
+        $namaLogin = Session::get("nama", "Saya");
+        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
+        $listHistory = DB::table('transaksi')->where('id_member', $ambilIdMember->id)->get();
+        return view('UserVip.history',[
+            'listHistory' => $listHistory
+        ]);
     }
 
     public function cs(){

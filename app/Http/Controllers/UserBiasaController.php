@@ -409,7 +409,9 @@ class UserBiasaController extends Controller
     }
 
     public function history(){
-        $listHistory = DB::table('transaksi')->get();
+        $namaLogin = Session::get("nama", "Saya");
+        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
+        $listHistory = DB::table('transaksi')->where('id_member', $ambilIdMember)->get();
         return view('UserBiasa.history', [
             "listHistory" => $listHistory
         ]);
