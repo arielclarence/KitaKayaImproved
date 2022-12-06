@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -141,5 +142,25 @@ class AdminController extends Controller
         // $data = DB::select("SELECT MONTH(created_at) as month FROM USER WHERE YEAR(CREATED_AT) = $date GROUP BY MONTH(CREATED_AT)");
 
         return response()->json([$data, $date], 200);
+    }
+
+    public function filterNama(Request $request)
+    {
+        $listHistory = DB::table('transaksi')->where('nama', 'LIKE', '%'.$request->input("nama").'%')->get();
+        return view('Admin.validasipembayaran',[
+            "listHistory" => $listHistory
+        ]);
+    }
+
+    public function filterTanggal(Request $request)
+    {
+        $dateawal = $request->input("dateawal");
+        $dateakhir = $request->input("dateakhir");
+        // $listHistory = DB::select("select * from transaksi where created_at >= $dateawal and created_at <= $dateakhir");
+        $listHistory = Transaksi::Where('created_at', '>=', $dateawal)->where('created_at', '<=', $dateakhir)->get();
+        // dd($listHistory);
+        return view('Admin.validasipembayaran',[
+            "listHistory" => $listHistory
+        ]);
     }
 }

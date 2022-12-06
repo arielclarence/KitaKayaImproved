@@ -6,18 +6,25 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Transfer</li>
         </ol>
-         <form action="" method="POST">
-             <!--Fitur Search-->
+            <!--Fitur Search-->
             <div class="form-outline">
-                <label class="form-label" for="form1">Nama</label>
-                <input type="search" name="nama">
-                <br>
-                Tanggal Transaksi :
-                <input type="date" name="dateawal" id=""> - <input type="date" name="dateakhir" id="">
-                <br>
-                <button type="submit" class="btn btn-primary" name="search">
-                    <i class="fas fa-search"></i>
-                </button>
+                <form action="{{ route('filterNama') }}" method="post">
+                    @csrf
+                    <label class="form-label" for="form1">Nama</label>
+                    <input type="search" name="nama">
+                    <button type="submit" class="btn btn-primary" name="search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <br>
+                </form>
+                <form action="{{ route('filterTanggal') }}" method="post">
+                    @csrf
+                    Tanggal Transaksi :
+                    <input type="date" name="dateawal" id=""> - <input type="date" name="dateakhir" id="">
+                    <button type="submit" class="btn btn-primary" name="search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
             </div>
             <table class="table table-dark table-striped">
                 <thead>
@@ -37,7 +44,6 @@
                     @endforelse
                 </tbody>
             </table>
-        </form>
     </div>
 </main>
 @endsection
