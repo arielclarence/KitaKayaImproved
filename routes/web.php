@@ -86,6 +86,7 @@ Route::prefix('/cs')->group(function() {
     Route::post('/forum/{id}', [CsController::class, "addpostforumcs"])->name('addpostforumcs')->middleware([CsMiddleware::class]);
     Route::post('/addreply/{id}', [CsController::class, "addreplyforumcs"])->name('addreplyforumcs')->middleware([CsMiddleware::class]);
     Route::post('/addreplycomment/{id}', [CsController::class, "addreplycommentforumcs"])->name('addreplycommentforumcs')->middleware([CsMiddleware::class]);
+    Route::get('/logout', [AdminController::class, "logout"]);
 });
 
 Route::prefix('/userBiasa')->group(function() {
@@ -112,6 +113,8 @@ Route::prefix('/userBiasa')->group(function() {
 
     Route::get('/cs/{id}', [UserBiasaController::class, "todetailcs"])->name('detailcs');
     Route::post('/chat/{id}', [UserBiasaController::class, "addchat"])->name('addchat');
+
+    Route::get('/profile', [UserBiasaController::class, "todetailuser"]);
 
     Route::post('/video', [UserBiasaController::class, "changepass"]);
 
@@ -145,6 +148,8 @@ Route::prefix('/userVip')->group(function() {
     Route::post('/rate/{id}', [UserVIPController::class, "rateservicevip"])->name('rateservicevip');
 
     Route::post('/video', [UserVIPController::class, "changepass"]);
+
+    Route::get('/profile', [UserVIPController::class, "todetailuser"]);
 
 });
 
