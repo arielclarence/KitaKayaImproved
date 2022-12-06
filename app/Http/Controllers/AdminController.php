@@ -95,7 +95,10 @@ class AdminController extends Controller
     }
 
     public function validasi(){
-        return view('Admin.validasipembayaran');
+        $listHistory = DB::table('transaksi')->get();
+        return view('Admin.validasipembayaran',[
+            "listHistory" => $listHistory
+        ]);
     }
 
     public function chartperkembangan(){

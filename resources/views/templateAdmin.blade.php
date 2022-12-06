@@ -65,7 +65,7 @@
                             </a>
                             <a class="nav-link" href="{{url('/admin/validasi')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
-                                Validasi Pembayaran Member
+                                History Pembayaran Member
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Charts</div>
