@@ -1,7 +1,7 @@
 @extends('templateCs')
 @section('content')
     <h1 class="mt-4">Forum</h1>
-    <h1 class="mt-4">{{ $video->nama}}</h1>
+    <h1 class="mt-4">{{ $video->judul}}</h1>
     <table class="table table-dark table-striped">
         <thead>
         </thead>
@@ -42,7 +42,7 @@
                                     <form action="{{ route('toeditpostforumcs', $thread->id) }}" method="GET">
                                         @csrf
                                     <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                        <button type="submit" class="btn btn-primary" >Edit</button>
+                                        <button type="submit" class="btn btn-warning" >Edit</button>
                                     </div>
                                     </form>
                                 @endif
@@ -68,15 +68,15 @@
                                             </span>
 
                                         </form>
-                                        @if ($comment->namamember=="Customer Service")
+                                            @if ($comment->namamember=="Customer Service")
 
-                                        <form action="{{ route('toeditreplyforumcs', $comment->id) }}" method="GET">
-                                            @csrf
-                                        <div class="action d-flex justify-content-between mt-2 align-items-center">
-                                            <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
-                                        </div>
-                                        </form>
-                                        @endif
+                                            <form action="{{ route('toeditreplyforumcs', $comment->id) }}" method="GET">
+                                                @csrf
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <button style="margin-left: 20px;" type="submit" class="btn btn-warning" >Edit</button>
+                                            </div>
+                                            </form>
+                                            @endif
 
 
 
