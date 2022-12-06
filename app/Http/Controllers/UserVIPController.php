@@ -289,10 +289,12 @@ class UserVIPController extends Controller
     }
 
     public function todetailuser(){
-        $namaLogin = Session::get("nama", "Saya");
-        $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->get();
+        // $namaLogin = Session::get("nama", "Saya");
+        // $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->get();
+
+        $user = User::where('email','=',Session::get('idUser'))->first();
         return view('UserVip.profile',[
-            "data_user" => $ambilIdMember
+            "d" => $user
         ]);
     }
 

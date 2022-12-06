@@ -93,26 +93,39 @@
 <main>
     <div class="container-fluid px-4">
         <h1 class="mt-4">My Profile</h1>
-        @if(count($data_user) > 0)
-            @foreach ($data_user as $d)
-                <h6>Nama Lengkap: {{$d->nama}}</h6>
-                <h6>Email: {{$d->email}}</h6>
-                <h6>Umur: {{$d->umur}}</h6>
-
-                @if ($d->status == 1)
-                <h6 style="color: green">Status: Active</h6>
+        <div class="row">
+            <div class="col">
+                <h4>Nama Lengkap: {{$d->nama}}</h4>
+            </div>
+            <div class="col">
+                @if ($d->exp > 100)
+                    <h5>Lv. Experienced</h5>
                 @else
-                <h6 style="color: red">Status: Deactiveds</h6>
+                    <h5>Lv. NewBie</h5>
                 @endif
+                Exp : ( {{ $d->exp }} )
+            </div>
+        </div>
+        <h6>Email: {{$d->email}}</h6>
+        <h6>Umur: {{$d->umur}}</h6>
 
-                @if ($d->role == 0)
-                <h6 style="color: blue">Role: User Reguler</h6><a href="{{url('/userBiasa/upgrade')}}"><button class="btn btn-info" style="color: white">Jadi User VIP? Yuk!!</button></a>
-                @elseif ($d->role == 1)
-                <h6 style="color: gold">Role: User VIP</h6>
-                @endif
+        @if ($d->status == 1)
+        <h6 style="color: green">Status: Active</h6>
+        @else
+        <h6 style="color: red">Status: Deactiveds</h6>
+        @endif
+
+        @if ($d->role == 0)
+        <h6 style="color: blue">Role: User Reguler</h6><a href="{{url('/userBiasa/upgrade')}}"><button class="btn btn-info" style="color: white">Jadi User VIP? Yuk!!</button></a>
+        @elseif ($d->role == 1)
+        <h6 style="color: gold">Role: User VIP</h6>
+        @endif
+
+        {{-- @if(count($data_user) > 0)
+            @foreach ($data_user as $d)
             @endforeach
         @else
-        @endif
+        @endif --}}
     </div>
 </main>
 @endsection
