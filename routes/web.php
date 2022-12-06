@@ -98,6 +98,11 @@ Route::prefix('/userBiasa')->group(function() {
     Route::get('/editreply/{id}', [UserBiasaController::class, "toeditreplyforumbiasa"])->name('toeditreplyforumbiasa');
     Route::post('/editreply/{id}', [UserBiasaController::class, "editreplyforumbiasa"])->name('editreplyforumbiasa');
 
+    // Detail Forum
+    Route::get('/forum/{id}/detail', [UserBiasaController::class, "toDetailThreadForum"]);
+    //Add Comment
+    Route::post('/add/comment', [UserBiasaController::class, "addDetailThreadForumComment"]);
+
     Route::post('/forum/{id}', [UserBiasaController::class, "addpostforumbiasa"])->name('addpostforumbiasa');
     Route::post('/addreply/{id}', [UserBiasaController::class, "addreplyforumbiasa"])->name('addreplyforumbiasa');
     Route::post('/addreplycomment/{id}', [UserBiasaController::class, "addreplycommentforumbiasa"])->name('addreplycommentforumbiasa');
