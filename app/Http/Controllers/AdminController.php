@@ -108,6 +108,23 @@ class AdminController extends Controller
         ]);
     }
 
+    public function searchmember(Request $request){
+        $q = $request->input('search');
+        $listUser = DB::table('user')->get();
+        $user = DB::table('user')->where('nama','LIKE', '%'.$q.'%')->get();
+        if(count($user) > 0){
+            return view('Admin.listmember',[
+                "listUser" => $user
+            ]);
+        }
+        else{
+            Alert::error('Error', 'Data tidak ditemukan!');
+            return view('Admin.listmember',[
+                "listUser" => $listUser
+            ]);
+        }
+    }
+
     public function chartperkembangan(){
         return view('Admin.chartperkembangan');
     }

@@ -1,17 +1,19 @@
 @extends('templateAdmin')
 @section('content')
 <main>
+    @include("sweetalert::alert")
     <div class="container-fluid px-4">
         <h1 class="mt-4">List Member</h1>
-         <form action="" method="POST">
-             <!--Fitur Search-->
+        <form action="{{url('/admin/listmember')}}" method="POST">
+            @csrf
             <div class="form-outline">
                 <label class="form-label" for="form1">Search</label>
-                <input type="search" name="nama">
-                <button type="submit" class="btn btn-primary" name="search">
+                <input type="search" name="search">
+                <button type="submit" class="btn btn-primary">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
+        </form>
             <br>
             <table class="table table-dark table-striped">
                 <thead>
@@ -48,7 +50,6 @@
                     @endforelse
                 </tbody>
             </table>
-        </form>
     </div>
 </main>
 @endsection

@@ -61,6 +61,7 @@ Route::prefix('/admin')->group(function() {
     Route::post('/chart/{id}/edit', [AdminController::class, "update"])->middleware([AdminMiddleware::class]);
     Route::get('/validasi', [AdminController::class, "validasi"])->middleware([AdminMiddleware::class]);
     Route::get('/listmember', [AdminController::class, "listmember"])->middleware([AdminMiddleware::class]);
+    Route::post('/listmember', [AdminController::class, "searchmember"])->middleware([AdminMiddleware::class]);
     Route::get('/chartperkembangan', [AdminController::class, "chartperkembangan"])->middleware([AdminMiddleware::class]);
     Route::get('/chartumur', [AdminController::class, "chartumur"])->name('homeumur')->middleware([AdminMiddleware::class]);
     Route::post('/addVideo', [VideoController::class, 'add'])->middleware([AdminMiddleware::class]);
