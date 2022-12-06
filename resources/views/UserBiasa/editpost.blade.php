@@ -14,7 +14,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddpost" >Edit Post</button>
         <br>
         <br>
-        <a href="/userVip/forum/{{$thread->kategori}}"><button type="button">Cancel Edit</button></a>
+        <a href="/userBiasa/forum/{{$thread->kategori}}"><button type="button">Cancel Edit</button></a>
 
     </form>
 @endsection

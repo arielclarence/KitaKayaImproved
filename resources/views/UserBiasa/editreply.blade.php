@@ -13,7 +13,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddpost" >Edit Reply</button>
         <br>
         <br>
-        <a href="/userbiasa/forum/{{$idforum}}"><button type="button">Cancel Edit</button></a>
+        <a href="/userBiasa/forum/{{$idforum}}"><button type="button">Cancel Edit</button></a>
 
     </form>
 @endsection

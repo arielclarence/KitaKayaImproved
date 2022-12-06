@@ -254,8 +254,10 @@ class UserBiasaController extends Controller
         $data->judul = $request->judul;
         $data->isi = $request->isi;
         $data->save();
-        $threads = ThreadForum::all()->where('kategori',  $request->id);
-        $video = Video::find($request->id);
+
+
+        $threads = ThreadForum::all()->where('kategori',  $data->kategori);
+        $video = Video::find($data->kategori);
         $comments = Comment::all();
 
         $idkategori=$request->id;
@@ -283,8 +285,10 @@ class UserBiasaController extends Controller
         $data->isi = $request->isi;
         $data->save();
 
-        $threads = ThreadForum::all()->where('kategori',  $request->id);
-        $video = Video::find($request->id);
+        $threadforum = ThreadForum::all()->where('id',  $data->thread)->first();
+        $threads = ThreadForum::all()->where('kategori',  $threadforum->kategori);
+
+        $video = Video::find($threadforum->kategori);
         $comments = Comment::all();
 
         $idkategori=$request->id;

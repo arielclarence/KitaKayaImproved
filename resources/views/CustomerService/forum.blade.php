@@ -32,8 +32,11 @@
                                         <h4>Isi Post : <?= $thread->isi?></h4>
                                         <h4>Poster : <?= $thread->namamember?></h4>
                                         <input type="text"  name="isi" placeholder="Isi reply" class="form-control">
+                                        <span style="color: red;">{{ $errors->first('isi') }}</span>
+
                                         <div class="action d-flex justify-content-between mt-2 align-items-center">
                                             <button type="submit" class="btn btn-primary" >Reply</button>
+
                                         </div>
 
                                     </form>
