@@ -25,6 +25,7 @@ class User extends Authenticatable
         'nama',
         'umur',
         'role',
+        'exp',
         'status',
     ];
 

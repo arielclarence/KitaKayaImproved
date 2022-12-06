@@ -8,9 +8,20 @@
     <br>
     {{-- <select name="" id="tahun"></select> --}}
     <div class="mb-4">
-        <input type="number" placeholder="Masukan Tahun" id="tahun" class="form-control">
-        <br>
-        <button id="search" class="btn btn-primary">search</button>
+        {{-- <input type="number" placeholder="Masukan Tahun" id="tahun" class="form-control"> --}}
+        @if (count($year) <= 0)
+            <h1>Tidak ada member...</h1>
+        @else
+            <select class="form-control" id="tahun">
+                @forelse ($year as $item)
+                <option value="{{ $item->year }}">{{ $item->year }}</option>
+                @empty
+
+                @endforelse
+            </select>
+            <br>
+            <button id="search" class="btn btn-primary">search</button>
+        @endif
     </div>
 
     <div id="result">
@@ -18,7 +29,7 @@
     <canvas id="chart" class="w-100"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
         $('#search').click(function(){
@@ -34,7 +45,7 @@
     function getMemberByYear(year) {
         $.ajax({
             type: 'GET',
-            url: '{{url('/get/chart/perkembangan')}}',
+            url: "{{url('/get/chart/perkembangan')}}",
             data: {
                 year: year
             },

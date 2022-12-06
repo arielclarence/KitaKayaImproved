@@ -118,7 +118,11 @@ class AdminController extends Controller
     }
 
     public function chartperkembangan(){
-        return view('Admin.chartperkembangan');
+        $year = DB::select("SELECT YEAR(created_at) AS year FROM user GROUP BY YEAR(created_at)");
+
+        return view('Admin.chartperkembangan',[
+            'year' => $year
+        ]);
     }
 
     public function chartumur(){
@@ -137,7 +141,7 @@ class AdminController extends Controller
     {
         $date = $request->year;
 
-        $data = DB::select("SELECT MONTH(created_at) AS month, COUNT(ID) AS total FROM USER WHERE YEAR(created_at) = $date GROUP BY YEAR(created_at), MONTH(created_at) ASC");
+        $data = DB::select("SELECT MONTH(created_at) AS month, COUNT(ID) AS total FROM user WHERE YEAR(created_at) = $date GROUP BY YEAR(created_at), MONTH(created_at)");
 
         // $data = DB::select("SELECT MONTH(created_at) as month FROM USER WHERE YEAR(CREATED_AT) = $date GROUP BY MONTH(CREATED_AT)");
 
