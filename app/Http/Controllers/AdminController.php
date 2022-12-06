@@ -101,6 +101,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function listmember(){
+        $listUser = DB::table('user')->get();
+        return view('Admin.listmember',[
+            "listUser" => $listUser
+        ]);
+    }
+
     public function chartperkembangan(){
         return view('Admin.chartperkembangan');
     }

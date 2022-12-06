@@ -63,10 +63,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Add Rekomendasi Saham
                             </a>
-                            <a class="nav-link" href="{{url('/admin/validasi')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
-                                History Pembayaran Member
-                            </a>
 
                             <div class="sb-sidenav-menu-heading">Charts</div>
                             <a class="nav-link collapsed" href="{{url('/admin/chartumur')}}">
@@ -77,6 +73,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Chart Perkembangan Member
                                 <!-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Users</div>
+                            <a class="nav-link" href="{{url('/admin/listmember')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                List Member
+                            </a>
+                            <a class="nav-link" href="{{url('/admin/validasi')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
+                                History Pembayaran Member
                             </a>
                         </div>
                     </div>

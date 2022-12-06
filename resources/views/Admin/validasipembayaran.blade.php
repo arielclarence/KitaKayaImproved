@@ -2,7 +2,7 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Validasi</h1>
+        <h1 class="mt-4">Pembayaran Members</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Transfer</li>
         </ol>
