@@ -77,6 +77,7 @@
 
         <a href="/userBiasa/cs"><button type="button" class="btn btn-warning">Back To Dashboard</button></a>
     </form>
+    <br>
     <form class="form-horizontal" action="{{ route('finishservicevip', $service->id) }}" method="POST">
         @csrf
         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to finish this chat?')" name="btnaddchat" >Finish</button>

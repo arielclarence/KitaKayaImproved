@@ -1,6 +1,6 @@
 @extends('templateHome')
 @section('content')
-<div class="overflow-auto pb-3" style="height: 70vh;">
+<div class="overflow-auto pb-3">
     <div class="p-4 border rounded shadow mt-2">
         <h1 class="text-center">{{ $thread->judul }}</h1>
         <p>{{ $thread->isi }}</p>
@@ -8,8 +8,8 @@
         <p>Posted By {{ $thread->namamember }}</p>
     </div>
     <br>
-    <h3>Comments</h3>
-    <div class="">
+    <div class="p-4">
+        <h3>Comments</h3>
         @forelse ($comments as $item)
             <div class="px-4 py-2 border rounded mb-2">
                 <div class="d-flex">
@@ -28,9 +28,6 @@
             <div class="">No Comments...</div>
         @endforelse
     </div>
-</div>
-<br>
-<div class="fixed-bottom border">
     <div class="p-4">
         <h5>Post a Comment</h5>
         <form action="{{ url("/userBiasa/add/comment") }}" method="POST">
@@ -44,5 +41,6 @@
         </form>
     </div>
 </div>
+<br>
 
 @endsection
