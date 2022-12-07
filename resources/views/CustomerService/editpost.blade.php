@@ -14,7 +14,7 @@
         <button type="submit" class="btn btn-primary" name="btnaddpost" >Edit Post</button>
         <br>
         <br>
-        <a href="/cs/forum/{{$thread->kategori}}"><button type="button">Cancel Edit</button></a>
+        <a href="/cs/forum/{{$thread->kategori}}"><button type="button" class="btn btn-danger">Cancel Edit</button></a>
 
     </form>
 @endsection

@@ -10,10 +10,10 @@
         <input type="text" name="isi" placeholder="Isi Yang ingin disampaikan" value="{{$comment->isi}}" class="form-control">
 
         <br>
-        <button type="submit" class="btn btn-primary" name="btnaddpost" >Edit Reply</button>
+        <button type="submit" class="btn btn-primary" name="btnaddpost">Edit Reply</button>
         <br>
         <br>
-        <a href="/userBiasa/forum/{{$idforum}}"><button type="button">Cancel Edit</button></a>
+        <a href="/userBiasa/forum/{{$idforum}}"><button type="button" class="btn btn-danger">Cancel Edit</button></a>
 
     </form>
 @endsection

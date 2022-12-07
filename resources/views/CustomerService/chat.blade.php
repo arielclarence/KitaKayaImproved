@@ -32,7 +32,7 @@
                     <form class="form-horizontal" action="{{ route('unsendchatcs', $chat->id) }}" method="POST">
                         @csrf
                         <div class="form-control" id="punyaecs">
-                            <button name="btnaddchat" type="submit" onclick="return confirm('Are you sure you want to unsend this massage?')" >Unsend</button>
+                            <button name="btnaddchat" class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to unsend this massage?')" >Unsend</button>
                             <input  type="text" value="Me :{{$chat->isi}} "  aria-label="readonly input example" readonly>
                         </div>
                     </form>

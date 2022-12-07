@@ -130,7 +130,6 @@
                             @csrf
                             Service not finished
                             <button type="submit" class="btn btn-danger" name="btnaddchat" onclick="return confirm('Are you sure you want to finish this chat?')">Finish</button>
-
                         </td>
                         </form>
                     @elseif ($service->rate!=0)

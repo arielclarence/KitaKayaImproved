@@ -1,12 +1,22 @@
 @extends('templateAdmin')
 @section('content')
+    <style>
+        .chart{
+            margin: auto;
+            width: 550px;
+            height: 500px;
+        }
+    </style>
     <div class="container-fluid px-4">
         <h1 class="mt-4">Chart Umur</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Umur</li>
         </ol>
         <br>
-        <canvas id="myChart"></canvas>
+        <div class="chart">
+            <canvas id="myChart"></canvas>
+        </div>
+
         {{-- done --}}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
