@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Kategori;
 use App\Models\Comment;
 use App\Models\ThreadForum;
+use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Video;
 
@@ -358,6 +359,18 @@ class UserVIPController extends Controller
         $namaLogin = Session::get("nama", "Saya");
         $ambilIdMember = DB::table('user')->where('nama', $namaLogin)->first();
         $listHistory = DB::table('transaksi')->where('id_member', $ambilIdMember->id)->get();
+        return view('UserVip.history',[
+            'listHistory' => $listHistory
+        ]);
+    }
+
+    public function filterTanggalVip(Request $request)
+    {
+        $dateawal = $request->input("dateawalvip");
+        $dateakhir = $request->input("dateakhirvip");
+        // $listHistory = DB::select("select * from transaksi where created_at >= $dateawal and created_at <= $dateakhir");
+        $listHistory = Transaksi::Where('created_at', '>=', $dateawal)->where('created_at', '<=', $dateakhir)->get();
+        // dd($listHistory);
         return view('UserVip.history',[
             'listHistory' => $listHistory
         ]);
