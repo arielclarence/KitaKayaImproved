@@ -88,7 +88,16 @@ class CsController extends Controller
 
         ]);
     }
+    public function toDetailThreadForum($id)
+    {
+        $thread_forum = ThreadForum::find($id);
+        $comments = Comment::where('thread','=',$id)->get();
 
+        return view('CustomerService.threadDetail', [
+            'thread' =>$thread_forum,
+            'comments' => $comments
+        ]);
+    }
     public function toeditpostforumcs(Request $request){
 
         $thread = ThreadForum::find($request->id);
@@ -96,6 +105,24 @@ class CsController extends Controller
             "thread" => $thread,
         ]);
     }
+    public function addDetailThreadForumComment(Request $request)
+    {
+        # code...
+        $isi = $request->isi;
+        $nama =  "Customer Service";
+        $threadId = $request->input('thread-id');
+
+        $new = new Comment();
+        $new->thread = $threadId;
+        $new->namamember = $nama;
+        $new->isi = $isi;
+        $new->reply = 0;
+        $new->unsend = 0;
+        $new->save();
+
+        return back();
+    }
+
     public function toeditreplyforumcs(Request $request){
 
         $comment = Comment::find($request->id);
@@ -157,19 +184,10 @@ class CsController extends Controller
         $data->save();
         $threadforum = ThreadForum::find($data->thread);
 
-        $threads = ThreadForum::all()->where('kategori',  $threadforum->kategori);
-        $video = Video::find($threadforum->kategori);
-        $comments = Comment::all();
 
-        $idkategori=$request->id;
 
-        return view('CustomerService.forum', [
-            "threads" => $threads,
-            "video" => $video,
-            "idkategori" => $idkategori,
-            "comments" => $comments
+        return redirect("cs/forum/$threadforum->id/detail");
 
-        ]);
     }
     public function addpostforumcs(Request $request){
         $rules = [

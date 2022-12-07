@@ -332,13 +332,8 @@ class UserBiasaController extends Controller
 
         $idkategori=$request->id;
 
-        return view('UserBiasa.forum', [
-            "threads" => $threads,
-            "video" => $video,
-            "idkategori" => $idkategori,
-            "comments" => $comments
+        return redirect("userBiasa/forum/$threadforum->id/detail");
 
-        ]);
     }
 
     public function addpostforumbiasa(Request $request){

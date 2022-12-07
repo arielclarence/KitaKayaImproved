@@ -131,14 +131,11 @@
                             <div class="sb-nav-link-icon"><i class="far fa-comment-dots"></i></div>
                             Chat
                         </a>
-                        <a class="nav-link" href="{{url('/userBiasa/forum')}}">
+
+                        <a class="nav-link" href="{{url('/cs/forum')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                             Forum
                         </a>
-                        {{-- <a class="nav-link" href="{{url('/cs/forum')}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
-                            Forum
-                        </a> --}}
                         <a class="nav-link" href="{{url('/cs/historycs')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-suitcase"></i></div>
                             History

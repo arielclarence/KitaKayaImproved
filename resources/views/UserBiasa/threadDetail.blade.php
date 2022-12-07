@@ -18,12 +18,33 @@
                         $user = DB::table('user')->where('nama','=', $item->namamember)->first();
                         // dd($user);
                     @endphp
-                    <p>Exp : {{ $user->exp }}</p>
+                     @if ($user==null)
+
+                     @else
+                     <p>Exp : {{ $user->exp}}</p>
+                     @endif
                 </div>
                 <p>Commented on {{ $item->created_at }}</p>
+                @if ($item->created_at!=$item->updated_at)
+                <h6>(Edited)</h6>
+                @endif
+
                 <hr>
                 <p>{{ $item->isi }}</p>
+
+                @if ($item->namamember==Session::get('nama'))
+
+                <form action="{{ route('toeditreplyforumbiasa', $item->id) }}" method="GET">
+                    @csrf
+                <div class="action d-flex justify-content-between mt-2 align-items-center">
+                    <button  type="submit" class="btn btn-warning" >Edit</button>
+
+                </div>
+                </form>
+                @endif
             </div>
+
+
         @empty
             <div class="">No Comments...</div>
         @endforelse
@@ -36,7 +57,7 @@
             <br>
             <div class="d-flex">
                 <button type="submit" value="{{ $thread->id }}" name="thread-id" class="btn btn-primary">Post!</button>
-                <a href="{{ url("userBiasa/forum") }}" class="mx-2 btn btn-danger">Back</a>
+                <a href="{{ url("userBiasa/forum/$thread->kategori") }}" class="mx-2 btn btn-danger">Back</a>
             </div>
         </form>
     </div>

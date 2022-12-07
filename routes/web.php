@@ -89,6 +89,11 @@ Route::prefix('/cs')->group(function() {
     Route::post('/addreply/{id}', [CsController::class, "addreplyforumcs"])->name('addreplyforumcs')->middleware([CsMiddleware::class]);
     Route::post('/addreplycomment/{id}', [CsController::class, "addreplycommentforumcs"])->name('addreplycommentforumcs')->middleware([CsMiddleware::class]);
     Route::get('/logout', [AdminController::class, "logout"]);
+
+    Route::post('/add/comment', [CsController::class, "addDetailThreadForumComment"]);
+
+    //detail forum
+    Route::get('/forum/{id}/detail', [CsController::class, "toDetailThreadForum"]);
 });
 
 Route::prefix('/userBiasa')->group(function() {
@@ -157,6 +162,9 @@ Route::prefix('/userVip')->group(function() {
     Route::post('/video', [UserVIPController::class, "changepass"]);
 
     Route::get('/profile', [UserVIPController::class, "todetailuser"]);
+
+
+    Route::post('/add/comment', [UserVIPController::class, "addDetailThreadForumComment"]);
 
     //detail forum
     Route::get('/forum/{id}/detail', [UserVIPController::class, "toDetailThreadForum"]);

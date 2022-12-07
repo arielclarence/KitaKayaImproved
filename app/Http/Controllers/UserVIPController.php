@@ -13,6 +13,7 @@ use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -46,6 +47,29 @@ class UserVIPController extends Controller
             'thread' =>$thread_forum,
             'comments' => $comments
         ]);
+    }
+    public function addDetailThreadForumComment(Request $request)
+    {
+        # code...
+        $isi = $request->isi;
+        $nama =  Session::get('nama');
+        $threadId = $request->input('thread-id');
+
+        $new = new Comment();
+        $new->thread = $threadId;
+        $new->namamember = $nama;
+        $new->isi = $isi;
+        $new->reply = 0;
+        $new->unsend = 0;
+        $new->save();
+
+        $userId = Session::get("idUser");
+        $user = User::where('email','=', $userId)->first();
+        $exp = $user->exp;
+        $user->exp = $exp + 10;
+        $user->save();
+
+        return back();
     }
 
     public function todetailforumvip(Request $request){
@@ -145,13 +169,28 @@ class UserVIPController extends Controller
 
         $idkategori=$request->id;
 
-        return view('UserVip.forum', [
-            "threads" => $threads,
-            "video" => $video,
-            "idkategori" => $idkategori,
-            "comments" => $comments
+        // return view('UserVip.forum', [
+        //     "threads" => $threads,
+        //     "video" => $video,
+        //     "idkategori" => $idkategori,
+        //     "comments" => $comments
 
-        ]);
+        // ]);
+
+
+        // $links = session()->has('links') ? session('links') : [];
+        // $currentLink = request()->path(); // Getting current URI like 'category/books/' array_unshift($links, $currentLink); // Putting it in the beginning of links array session(['links' => $links]); // Saving links array to the session
+        // return redirect(session('links')[2]);
+
+
+        // return Redirect::to($request->request->get('http_referrer'));
+
+        return redirect("userVip/forum/$threadforum->id/detail");
+
+        // return view('UserVip.threadDetail', [
+        //     'thread' =>$threads,
+        //     'comments' => $comments
+        // ]);
     }
     public function addpostforumvip(Request $request){
         $rules = [
