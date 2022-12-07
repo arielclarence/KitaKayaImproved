@@ -26,6 +26,7 @@
             <br>
             <h5>{{ $thread->isi }}</h5>
             <p>Posted By {{ $thread->namamember }}</p>
+            <h5>Tekan Disini.</h5>
             @if ($thread->namamember==Session::get('nama'))
 
             <form action="{{ route('toeditpostforumbiasa', $thread->id) }}" method="GET">
