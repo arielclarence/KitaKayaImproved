@@ -36,21 +36,38 @@ class UserVIPController extends Controller
         ]);
     }
 
+    //detail thread forum
+    public function toDetailThreadForum($id)
+    {
+        $thread_forum = ThreadForum::find($id);
+        $comments = Comment::where('thread','=',$id)->get();
+
+        return view('UserVip.threadDetail', [
+            'thread' =>$thread_forum,
+            'comments' => $comments
+        ]);
+    }
+
     public function todetailforumvip(Request $request){
 
         $threads = ThreadForum::all()->where('kategori',  $request->id);
         $video = Video::find($request->id);
         $comments = Comment::all();
-        // dd($comments);
 
         $idkategori=$request->id;
+
+        // $threads = ThreadForum::all()->where('kategori',  $request->id);
+        // $video = Video::find($request->id);
+        // $comments = Comment::all();
+        // // dd($comments);
+
+        // $idkategori=$request->id;
 
         return view('UserVip.forum', [
             "threads" => $threads,
             "video" => $video,
             "idkategori" => $idkategori,
             "comments" => $comments
-
         ]);
     }
     public function toeditpostforumvip(Request $request){

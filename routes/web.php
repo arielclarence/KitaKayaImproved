@@ -158,6 +158,8 @@ Route::prefix('/userVip')->group(function() {
 
     Route::get('/profile', [UserVIPController::class, "todetailuser"]);
 
+    //detail forum
+    Route::get('/forum/{id}/detail', [UserVIPController::class, "toDetailThreadForum"]);
 });
 
 
